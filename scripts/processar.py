@@ -163,7 +163,8 @@ def main(saida):
     emendas = {}
     for r in linhas('siconv_emenda'):
         if r['ID_PROPOSTA'] in props and r.get('NOME_PARLAMENTAR'):
-            emendas.setdefault(r['ID_PROPOSTA'], []).append('|'.join([limpa(r['NOME_PARLAMENTAR'], 80), limpa(r.get('TIPO_PARLAMENTAR'), 30), num(r.get('VALOR_REPASSE_PROPOSTA_EMENDA') or r.get('VALOR_REPASSE_EMENDA')), r.get('NR_EMENDA', '')]))
+            # nome|tipo|valor indicado a ESTA proposta|número da emenda|valor da emenda inteira (que pode atender várias propostas)
+            emendas.setdefault(r['ID_PROPOSTA'], []).append('|'.join([limpa(r['NOME_PARLAMENTAR'], 80), limpa(r.get('TIPO_PARLAMENTAR'), 30), num(r.get('VALOR_REPASSE_PROPOSTA_EMENDA')), r.get('NR_EMENDA', ''), num(r.get('VALOR_REPASSE_EMENDA'))]))
     for i, l in emendas.items():
         props[i][21] = ' ## '.join(l)[:900]
     usados = {p[14] for p in props.values() if p[14]}
