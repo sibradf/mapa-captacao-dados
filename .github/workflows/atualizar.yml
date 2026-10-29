@@ -1,0 +1,23 @@
+name: Atualizar dados (Transferegov)
+on:
+  schedule:
+    - cron: '17 10 * * *'   # 07:17 de Brasília, depois da carga diária do governo (~06:30)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: atualizar
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixar e processar
+        run: python3 scripts/processar.py /tmp/saida 2>&1 | tee /tmp/saida_log.txt
+      - name: Publicar no ramo dados
+        run: |
+          cp /tmp/saida_log.txt /tmp/saida/ultimo_log.txt
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git checkout --orphan dados-novo && git rm -rfq . && cp /tmp/saida/* .
+          git add -A && git commit -qm "Dados de $(date -u +%Y-%m-%d)"
+          git push -f origin dados-novo:dados
