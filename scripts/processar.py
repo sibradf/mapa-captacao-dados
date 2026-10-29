@@ -163,8 +163,9 @@ def main(saida):
     emendas = {}
     for r in linhas('siconv_emenda'):
         if r['ID_PROPOSTA'] in props and r.get('NOME_PARLAMENTAR'):
-            # nome|tipo|valor indicado a ESTA proposta|número da emenda|valor da emenda inteira (que pode atender várias propostas)
-            emendas.setdefault(r['ID_PROPOSTA'], []).append('|'.join([limpa(r['NOME_PARLAMENTAR'], 80), limpa(r.get('TIPO_PARLAMENTAR'), 30), num(r.get('VALOR_REPASSE_PROPOSTA_EMENDA')), r.get('NR_EMENDA', ''), num(r.get('VALOR_REPASSE_EMENDA'))]))
+            # nome|tipo|valor desta emenda NESTA proposta (VALOR_REPASSE_EMENDA, bate com o repasse do convênio)|número|
+            # valor indicado na emenda (VALOR_REPASSE_PROPOSTA_EMENDA, às vezes maior: a emenda atende mais de uma proposta)
+            emendas.setdefault(r['ID_PROPOSTA'], []).append('|'.join([limpa(r['NOME_PARLAMENTAR'], 80), limpa(r.get('TIPO_PARLAMENTAR'), 30), num(r.get('VALOR_REPASSE_EMENDA')), r.get('NR_EMENDA', ''), num(r.get('VALOR_REPASSE_PROPOSTA_EMENDA'))]))
     for i, l in emendas.items():
         props[i][21] = ' ## '.join(l)[:900]
     usados = {p[14] for p in props.values() if p[14]}
