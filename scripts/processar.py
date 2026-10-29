@@ -135,9 +135,12 @@ def main(saida):
     for r in linhas('siconv_programa_proposta'):
         pp.setdefault(r['ID_PROPOSTA'], r['ID_PROGRAMA'])
     props = {}
+    cnpj_ibge = {}   # CNPJ da prefeitura -> código IBGE (para saber quem está na lista fechada de um programa)
     for r in linhas('siconv_proposta'):
         if 'Municipal' not in (r.get('NATUREZA_JURIDICA') or ''):
             continue
+        if r.get('IDENTIF_PROPONENTE') and r.get('COD_MUNIC_IBGE'):
+            cnpj_ibge[r['IDENTIF_PROPONENTE']] = r['COD_MUNIC_IBGE']
         try:
             ano = int(r.get('ANO_PROP') or 0)
         except ValueError:
@@ -182,22 +185,19 @@ def main(saida):
     # ---------- programas com lista fechada de proponentes (só os municípios)
     muni_por_id = {}
     for r in linhas('siconv_proponentes'):
-        idp = r.get('ID_PROPONENTE') or ''
-        ibge = r.get('COD_MUNIC_IBGE') or r.get('CODIGO_MUNICIPIO_IBGE') or ''
-        nat = r.get('NATUREZA_JURIDICA') or r.get('DESC_NATUREZA_JURIDICA') or ''
-        if idp and ibge and 'Municipal' in nat:
-            muni_por_id[idp] = ibge
+        ibge = cnpj_ibge.get(r.get('IDENTIF_PROPONENTE') or '')
+        if ibge:
+            muni_por_id[r['ID_PROPONENTE']] = ibge
     abertos = {p['id'] for p in prog.values() if max(p['fim_prop'], p['fim_emenda'], p['fim_benef']) >= hoje}
     hab = set()
     for r in linhas('siconv_programa_proponentes'):
         if r['ID_PROGRAMA'] in abertos and r['ID_PROPONENTE'] in muni_por_id:
             hab.add((r['ID_PROGRAMA'], muni_por_id[r['ID_PROPONENTE']]))
     n_hab = gravar(os.path.join(saida, 'habilitados.csv.gz'), ['id_programa', 'ibge'], sorted(hab))
-    cab_prop = next(iter([list(r.keys()) for r in linhas('siconv_proponentes')]), [])
 
     meta = {'data_carga_governo': carga, 'processado_em': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
             'ano_min': ANO_MIN, 'programas': n_prog, 'programas_abertos': len(abertos), 'propostas': n_prop, 'habilitados': n_hab,
-            'falhas_download': falhas, 'colunas_proponentes': cab_prop, 'fonte': BASE}
+            'programas_com_lista_fechada': len({h[0] for h in hab}), 'falhas_download': falhas, 'fonte': BASE}
     with open(os.path.join(saida, 'meta.json'), 'w', encoding='utf-8') as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     log(json.dumps(meta, ensure_ascii=False))
