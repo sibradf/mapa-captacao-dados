@@ -1,9 +1,16 @@
 name: Sondar arquivos
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   sondar:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/sondar.py data_carga_siconv siconv_programa siconv_programa_proponentes siconv_programa_proposta siconv_proposta siconv_convenio siconv_emenda
+      - run: python3 scripts/sondar.py data_carga_siconv siconv_programa siconv_programa_proponentes siconv_programa_proposta siconv_proposta siconv_convenio siconv_emenda > /tmp/sondagem.txt 2>&1 || true
+      - name: Publicar resultado no ramo sondagem
+        run: |
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git checkout --orphan sondagem && git rm -rfq . && cp /tmp/sondagem.txt sondagem.txt
+          git add sondagem.txt && git commit -qm "Resultado da sondagem" && git push -f origin sondagem
