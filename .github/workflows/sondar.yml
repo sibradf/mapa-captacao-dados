@@ -8,7 +8,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/sondar.py data_carga_siconv siconv_programa siconv_programa_proponentes siconv_programa_proposta siconv_proposta siconv_convenio siconv_emenda > /tmp/sondagem.txt 2>&1 || true
+      - run: python3 scripts/sondar.py siconv_meta_crono_fisico siconv_etapa_crono_fisico siconv_plano_aplicacao_detalhado siconv_pagamento siconv_historico_situacao siconv_licitacao siconv_contrato siconv_desembolso > /tmp/sondagem.txt 2>&1 || true
       - name: Publicar resultado no ramo sondagem
         run: |
           git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
