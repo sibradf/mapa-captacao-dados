@@ -12,7 +12,10 @@ import csv, gzip, io, json, os, sys, time, urllib.request, zipfile, datetime
 
 BASE = 'https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/'
 ARQUIVOS = ['data_carga_siconv', 'siconv_programa', 'siconv_programa_proponentes', 'siconv_proponentes',
-            'siconv_programa_proposta', 'siconv_proposta', 'siconv_convenio', 'siconv_emenda']
+            'siconv_programa_proposta', 'siconv_proposta', 'siconv_convenio', 'siconv_emenda',
+            'siconv_meta_crono_fisico', 'siconv_plano_aplicacao_detalhado', 'siconv_licitacao', 'siconv_contrato',
+            'siconv_desembolso', 'siconv_historico_situacao']
+N_FATIAS = 500   # detalhes de cada proposta em detalhes/NNN.json.gz (NNN = id % 500): o portal baixa só a fatia que precisa
 ANO_MIN = int(os.environ.get('ANO_MIN', '2019'))
 TMP = os.environ.get('FONTE_LOCAL') or '/tmp/tg'
 csv.field_size_limit(10**9)
@@ -195,12 +198,72 @@ def main(saida):
             hab.add((r['ID_PROGRAMA'], muni_por_id[r['ID_PROPONENTE']]))
     n_hab = gravar(os.path.join(saida, 'habilitados.csv.gz'), ['id_programa', 'ibge'], sorted(hab))
 
-    meta = {'data_carga_governo': carga, 'processado_em': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
+    n_det = detalhes(saida, props)
+
+    meta = {'data_carga_governo': carga, 'detalhes': n_det, 'processado_em': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
             'ano_min': ANO_MIN, 'programas': n_prog, 'programas_abertos': len(abertos), 'propostas': n_prop, 'habilitados': n_hab,
             'programas_com_lista_fechada': len({h[0] for h in hab}), 'falhas_download': falhas, 'fonte': BASE}
     with open(os.path.join(saida, 'meta.json'), 'w', encoding='utf-8') as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     log(json.dumps(meta, ensure_ascii=False))
+
+
+def detalhes(saida, props):
+    """Para cada proposta que virou convênio: metas, itens comprados, licitações e contratos, repasses e histórico.
+    Nada de dados pessoais: pagamentos a pessoas (bolsas, folha) ficam de fora; fornecedores só em contratos (empresas)."""
+    alvo = {i: p for i, p in props.items() if p[15]}           # tem número de convênio
+    conv = {p[15]: i for i, p in alvo.items()}
+    d = {i: {} for i in alvo}
+    def add(i, k, v, lim):
+        l = d[i].setdefault(k, [])
+        if len(l) < lim:
+            l.append(v)
+    for r in linhas('siconv_meta_crono_fisico'):
+        i = r['ID_PROPOSTA']
+        if i in d:
+            add(i, 'metas', [r['NR_META'], limpa(r['DESC_META'], 400), r['QTD_META'], limpa(r['UND_FORNECIMENTO_META'], 30), num(r['VL_META']), data(r['DATA_INICIO_META']), data(r['DATA_FIM_META'])], 20)
+    for r in linhas('siconv_plano_aplicacao_detalhado'):
+        i = r['ID_PROPOSTA']
+        if i in d:
+            add(i, 'itens', [limpa(r['DESCRICAO_ITEM'], 300), limpa(r['TIPO_DESPESA_ITEM'], 20), limpa(r['NATUREZA_DESPESA'], 60), r['QTD_ITEM'], num(r['VALOR_UNITARIO_ITEM']), num(r['VALOR_TOTAL_ITEM']), limpa(r['SIT_ITEM'], 20)], 60)
+    lic = {}
+    for r in linhas('siconv_licitacao'):
+        i = conv.get(r['NR_CONVENIO'])
+        if i:
+            lic[r['ID_LICITACAO']] = i
+            add(i, 'licitacoes', [r['ID_LICITACAO'], limpa(r['TP_PROCESSO_COMPRA'], 40), limpa(r['MODALIDADE_LICITACAO'], 40), limpa(r['NR_LICITACAO'], 30), limpa(r['STATUS_LICITACAO'], 30), num(r['VALOR_LICITACAO']), data(r['DATA_HOMOLOGACAO_LICITACAO']) or data(r['DATA_PUBLICACAO_LICITACAO'])], 15)
+    for r in linhas('siconv_contrato'):
+        i = lic.get(r['ID_LICITACAO'])
+        if i:
+            forn = r['ID_FORNECEDOR_CONTRATO'] or ''
+            empresa = len(''.join(c for c in forn if c.isdigit())) == 14   # CNPJ: empresa (CPF de pessoa fica de fora)
+            add(i, 'contratos', [limpa(r['OBJETO_CONTRATO'], 300), limpa(r['NOME_FORNECEDOR_CONTRATO'], 120) if empresa else '', num(r['VALOR_GLOBAL_CONTRATO']), data(r['DATA_ASSINATURA_CONTRATO']), limpa(r['TIPO_AQUISICAO_CONTRATO'], 30)], 15)
+    for r in linhas('siconv_desembolso'):
+        i = conv.get(r['NR_CONVENIO'])
+        if i:
+            add(i, 'repasses', [data(r['DATA_DESEMBOLSO']), num(r['VL_DESEMBOLSADO'])], 40)
+    hist = {}
+    for r in linhas('siconv_historico_situacao'):
+        i = r['ID_PROPOSTA']
+        if i in d:
+            hist.setdefault(i, {})[r['HISTORICO_SIT']] = min(hist.get(i, {}).get(r['HISTORICO_SIT'], 'z'), r['DIA_HISTORICO_SIT'][:10])
+    for i, h in hist.items():
+        d[i]['historico'] = sorted([[data(v), k] for k, v in h.items()], key=lambda x: x[0])[-25:]
+    for i in d:
+        if 'itens' in d[i]:
+            d[i]['itens'].sort(key=lambda x: -float(x[5] or 0))
+    pasta = os.path.join(saida, 'detalhes')
+    os.makedirs(pasta, exist_ok=True)
+    fatias = {}
+    for i, v in d.items():
+        if v:
+            fatias.setdefault(int(i) % N_FATIAS, {})[i] = v
+    for f, dados in fatias.items():
+        with gzip.open(os.path.join(pasta, f'{f:03d}.json.gz'), 'wt', encoding='utf-8') as fh:
+            json.dump(dados, fh, ensure_ascii=False, separators=(',', ':'))
+    tam = sum(os.path.getsize(os.path.join(pasta, x)) for x in os.listdir(pasta))
+    log(f'detalhes: {sum(len(x) for x in fatias.values())} convênios em {len(fatias)} fatias, {tam / 1048576:.1f} MB')
+    return sum(len(x) for x in fatias.values())
 
 
 if __name__ == '__main__':
