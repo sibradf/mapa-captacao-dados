@@ -1,0 +1,12 @@
+18:22:53 tabelas: 281 países, 13746 NCM, 1274 SH4
+18:23:04 EXP_2024: 15354 linhas do país
+18:23:20 IMP_2024: 88527 linhas do país
+18:23:32 EXP_2025: 16570 linhas do país
+18:23:49 IMP_2025: 93381 linhas do país
+18:23:58 EXP_2026: 11871 linhas do país
+18:24:12 IMP_2026: 71356 linhas do país
+18:24:13 câmbio: 274 dias
+18:24:26 notícias (Google News RSS): 185
+18:24:26 notícias Brasil x país: 63
+18:24:26 notícias: 63
+18:24:26 ok
