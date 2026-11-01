@@ -39,7 +39,8 @@ def tabela(nome):
     return list(csv.DictReader(io.StringIO(txt), delimiter=';'))
 
 
-def main(saida, pais, moeda, termo):
+def main(saida, pais, moeda, termo, termo_pt=''):
+    termo_pt = termo_pt or termo
     os.makedirs(saida, exist_ok=True)
     hoje = datetime.date.today()
     anos = [hoje.year - 2, hoje.year - 1, hoje.year]
@@ -152,6 +153,7 @@ def main(saida, pais, moeda, termo):
     q = urllib.parse.quote(f'(Brazil OR Brasil) {termo}')
     b = get(f'https://api.gdeltproject.org/api/v2/doc/doc?query={q}&mode=artlist&maxrecords=75&format=json&timespan=14d&sort=datedesc', 60)
     noticias = []
+    vistos_g = set()
     if b:
         try:
             vistos = set()
@@ -164,7 +166,33 @@ def main(saida, pais, moeda, termo):
                 noticias.append({'titulo': t, 'url': a.get('url'), 'veiculo': a.get('domain'), 'data': (a.get('seendate') or '')[:8], 'idioma': a.get('language')})
         except Exception as e:
             log(f'gdelt: {e}')
-    dados['noticias'] = noticias[:30]
+    # se a GDELT recusar (limite por IP), usa a busca de notícias do Google (RSS público): título, veículo, data e link
+    if not noticias:
+        import xml.etree.ElementTree as ET, email.utils
+        for consulta, hl, gl, ceid in ((f'Brasil {termo_pt}', 'pt-BR', 'BR', 'BR:pt-419'), (f'Brazil {termo}', 'en-US', 'US', 'US:en')):
+            b = get('https://news.google.com/rss/search?q=' + urllib.parse.quote(consulta + ' when:14d') + f'&hl={hl}&gl={gl}&ceid={ceid}', 60, 2)
+            if not b:
+                continue
+            try:
+                for it in ET.fromstring(b).iter('item'):
+                    t = (it.findtext('title') or '').strip()
+                    fonte = (it.findtext('source') or '').strip()
+                    if fonte and t.endswith(' - ' + fonte):
+                        t = t[: -len(fonte) - 3]
+                    k = t.lower()[:60]
+                    if not t or k in vistos_g:
+                        continue
+                    vistos_g.add(k)
+                    try:
+                        dt = email.utils.parsedate_to_datetime(it.findtext('pubDate')).strftime('%Y%m%d')
+                    except Exception:
+                        dt = ''
+                    noticias.append({'titulo': t, 'url': it.findtext('link'), 'veiculo': fonte, 'data': dt, 'idioma': 'Portuguese' if hl == 'pt-BR' else 'English'})
+            except Exception as e:
+                log(f'rss: {e}')
+        noticias.sort(key=lambda n: n['data'], reverse=True)
+        log(f'notícias (Google News RSS): {len(noticias)}')
+    dados['noticias'] = noticias[:40]
     log(f'notícias: {len(noticias)}')
     with open(os.path.join(saida, f'pais_{pais}.json'), 'w', encoding='utf-8') as f:
         json.dump(dados, f, ensure_ascii=False)
@@ -172,4 +200,4 @@ def main(saida, pais, moeda, termo):
 
 
 if __name__ == '__main__':
-    main(*sys.argv[1:5])
+    main(*sys.argv[1:6])
