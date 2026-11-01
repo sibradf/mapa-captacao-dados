@@ -41,6 +41,7 @@ def tabela(nome):
 
 def main(saida, pais, moeda, termo, termo_pt=''):
     termo_pt = termo_pt or termo
+    extras = {'399': ['japanese', 'japonês', 'japonesa', 'tóquio', 'tokyo', 'nikkei', 'iene', 'yen', 'jica', 'jbic', 'takaichi', 'ishiba']}.get(pais, [])
     os.makedirs(saida, exist_ok=True)
     hoje = datetime.date.today()
     anos = [hoje.year - 2, hoje.year - 1, hoje.year]
@@ -167,7 +168,7 @@ def main(saida, pais, moeda, termo, termo_pt=''):
         except Exception as e:
             log(f'gdelt: {e}')
     # se a GDELT recusar (limite por IP), usa a busca de notícias do Google (RSS público): título, veículo, data e link
-    if not noticias:
+    if True:   # o RSS do Google entra sempre; a GDELT traz muito ruído em outros idiomas
         import xml.etree.ElementTree as ET, email.utils
         for consulta, hl, gl, ceid in ((f'Brasil {termo_pt}', 'pt-BR', 'BR', 'BR:pt-419'), (f'Brazil {termo}', 'en-US', 'US', 'US:en')):
             b = get('https://news.google.com/rss/search?q=' + urllib.parse.quote(consulta + ' when:14d') + f'&hl={hl}&gl={gl}&ceid={ceid}', 60, 2)
@@ -192,6 +193,13 @@ def main(saida, pais, moeda, termo, termo_pt=''):
                 log(f'rss: {e}')
         noticias.sort(key=lambda n: n['data'], reverse=True)
         log(f'notícias (Google News RSS): {len(noticias)}')
+    # só manchetes em português ou inglês que citam OS DOIS países no título
+    import re
+    br = re.compile(r'\b(brasil|brazil|brasileir|brazilian|lula|bras[ií]lia|s[ãa]o paulo)', re.I)
+    alvo = re.compile(r'(' + '|'.join(re.escape(x) for x in {termo, termo_pt} | set(extras)) + r')', re.I)
+    noticias = [n for n in noticias if n.get('idioma') in ('English', 'Portuguese') and br.search(n['titulo']) and alvo.search(n['titulo'])]
+    noticias.sort(key=lambda n: n['data'], reverse=True)
+    log(f'notícias Brasil x país: {len(noticias)}')
     dados['noticias'] = noticias[:40]
     log(f'notícias: {len(noticias)}')
     with open(os.path.join(saida, f'pais_{pais}.json'), 'w', encoding='utf-8') as f:
