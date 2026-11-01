@@ -197,7 +197,8 @@ def main(saida, pais, moeda, termo, termo_pt=''):
     import re
     br = re.compile(r'\b(brasil|brazil|brasileir|brazilian|lula|bras[ií]lia|s[ãa]o paulo)', re.I)
     alvo = re.compile(r'(' + '|'.join(re.escape(x) for x in {termo, termo_pt} | set(extras)) + r')', re.I)
-    noticias = [n for n in noticias if n.get('idioma') in ('English', 'Portuguese') and br.search(n['titulo']) and alvo.search(n['titulo'])]
+    esporte = re.compile(r'(sele[çc][ãa]o|amistos|friendl|world cup|copa do mundo|squad|convoca|futebol|football|soccer|v[ôo]lei|volley|u-1\d|sub-1\d|ancelotti|p[êe]nalti|gol\b|goal|match|partida|jogo|olymp|ol[íi]mp|grand prix|f[óo]rmula|mma|ufc|jud[ôo]|surf|skate)', re.I)
+    noticias = [n for n in noticias if n.get('idioma') in ('English', 'Portuguese') and br.search(n['titulo']) and alvo.search(n['titulo']) and not esporte.search(n['titulo'])]
     noticias.sort(key=lambda n: n['data'], reverse=True)
     log(f'notícias Brasil x país: {len(noticias)}')
     dados['noticias'] = noticias[:40]
