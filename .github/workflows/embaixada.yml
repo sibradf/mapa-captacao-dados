@@ -2,10 +2,7 @@ name: Painel de embaixada
 on:
   workflow_dispatch:
     inputs:
-      pais: { description: 'Código do país no MDIC (Japão = 399)', default: '399' }
-      moeda: { description: 'Moeda (PTAX)', default: 'JPY' }
-      termo: { description: 'Termo em inglês para as manchetes', default: 'Japan' }
-      termo_pt: { description: 'Termo em português para as manchetes', default: 'Japão' }
+      paises: { description: 'Códigos MDIC separados por vírgula (vazio = todos os países)', default: '' }
   schedule:
     - cron: '40 10 * * *'
 permissions:
@@ -14,10 +11,10 @@ concurrency: embaixada
 jobs:
   painel:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/embaixada.py /tmp/emb "${{ github.event.inputs.pais || '399' }}" "${{ github.event.inputs.moeda || 'JPY' }}" "${{ github.event.inputs.termo || 'Japan' }}" "${{ github.event.inputs.termo_pt || 'Japão' }}" 2>&1 | tee /tmp/emb_log.txt
+      - run: python3 scripts/embaixada.py /tmp/emb "${{ github.event.inputs.paises || 'todos' }}" 2>&1 | tee /tmp/emb_log.txt
       - name: Publicar no ramo embaixada
         run: |
           cp /tmp/emb_log.txt /tmp/emb/ultimo_log.txt
