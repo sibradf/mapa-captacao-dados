@@ -1,0 +1,21 @@
+name: Diagnostico certificado MDIC
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir -p out
+          openssl s_client -connect balanca.mdic.gov.br:443 -servername balanca.mdic.gov.br -showcerts </dev/null > out/chain.txt 2>&1 || true
+          awk '/BEGIN CERT/,/END CERT/' out/chain.txt > out/leaf.pem
+          openssl x509 -in out/leaf.pem -noout -subject -issuer -dates -ext authorityInfoAccess > out/leaf_info.txt 2>&1 || true
+          AIA=$(grep -o 'CA Issuers - URI:[^ ]*' out/leaf_info.txt | head -1 | sed 's/CA Issuers - URI://')
+          echo "AIA=$AIA" >> out/leaf_info.txt
+          if [ -n "$AIA" ]; then curl -sL "$AIA" -o out/inter.der; openssl x509 -inform DER -in out/inter.der -out out/inter.pem 2>/dev/null || cp out/inter.der out/inter.pem; openssl x509 -in out/inter.pem -noout -subject -issuer -dates >> out/leaf_info.txt 2>&1; fi
+          cat out/leaf.pem out/inter.pem > out/full.pem
+          openssl verify -untrusted out/inter.pem out/leaf.pem >> out/leaf_info.txt 2>&1 || true
+          grep -E "s:|i:|Verify" out/chain.txt >> out/leaf_info.txt
+      - run: |
+          cd out && git init -q && git config user.name robo && git config user.email robo@x && git checkout -qb diag && git add -A && git commit -qm diag && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag
