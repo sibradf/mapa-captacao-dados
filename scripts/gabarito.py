@@ -5,7 +5,16 @@ Publica no ramo "validacao":
   gabarito_ibge.json população oficial (IBGE/SIDRA, tabela 6579, último ano) por município e por UF
 O servidor do Mapa compara estes números com o que está no banco dele.
 """
-import json, os, sys, time, datetime, urllib.request, urllib.error
+import ssl, json, os, sys, time, datetime, urllib.request, urllib.error
+
+
+# O MDIC (SERPRO) passou a mandar só o próprio certificado, sem o intermediário (nov/2026).
+# Acrescenta o intermediário oficial "AC SERPRO AR46 OV TLS CA 2025" (assinado pela GlobalSign Root R46) à cadeia de confiança.
+CTX = ssl.create_default_context()
+try:
+    CTX.load_verify_locations(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'certs', 'serpro_ar46_ov_tls_ca_2025.pem'))
+except Exception:
+    pass
 
 UA = {'User-Agent': 'Mozilla/5.0 (robo-mapadegoverno validador)'}
 FONTES = [
@@ -30,7 +39,7 @@ def sonda(url, metodo='HEAD'):
     t = time.time()
     try:
         req = urllib.request.Request(url, headers=UA, method=metodo)
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=30, context=CTX) as r:
             if metodo == 'GET':
                 r.read(2048)
             return r.status, round((time.time() - t) * 1000)
@@ -47,7 +56,7 @@ def sonda(url, metodo='HEAD'):
 def sidra(caminho):
     for t in range(3):
         try:
-            with urllib.request.urlopen(urllib.request.Request('https://apisidra.ibge.gov.br/values' + caminho, headers=UA), timeout=300) as r:
+            with urllib.request.urlopen(urllib.request.Request('https://apisidra.ibge.gov.br/values' + caminho, headers=UA), timeout=300, context=CTX) as r:
                 return json.loads(r.read())
         except Exception as e:
             print('sidra', caminho, e, flush=True); time.sleep(20 * (t + 1))

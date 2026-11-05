@@ -6,10 +6,19 @@ Mapa de Governo · painel de embaixada: Brasil x cada país, só com dados ofici
 Uso: python3 scripts/embaixada.py PASTA_SAIDA [CODIGOS]   (CODIGOS vazio ou "todos" = todos os países com comércio)
 Saída: pais_CODIGO.json por país + paises.json (lista para a página de escolha).
 """
-import csv, io, json, os, re, sys, time, urllib.request, urllib.parse, datetime, collections, tempfile
+import ssl, csv, io, json, os, re, sys, time, urllib.request, urllib.parse, datetime, collections, tempfile
 import xml.etree.ElementTree as ET, email.utils
 
 MDIC = 'https://balanca.mdic.gov.br/balanca/bd/'
+
+# O MDIC (SERPRO) passou a mandar só o próprio certificado, sem o intermediário (nov/2026).
+# Acrescenta o intermediário oficial "AC SERPRO AR46 OV TLS CA 2025" (assinado pela GlobalSign Root R46) à cadeia de confiança.
+CTX = ssl.create_default_context()
+try:
+    CTX.load_verify_locations(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'certs', 'serpro_ar46_ov_tls_ca_2025.pem'))
+except Exception:
+    pass
+
 UA = {'User-Agent': 'Mozilla/5.0 (robo-mapadegoverno)'}
 csv.field_size_limit(10**9)
 
@@ -38,7 +47,7 @@ def log(m):
 def get(url, timeout=600, tentativas=3):
     for t in range(1, tentativas + 1):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout, context=CTX) as r:
                 return r.read()
         except Exception as e:
             log(f'falha {url[:120]} ({t}): {e}')
@@ -50,7 +59,7 @@ def baixar(url, destino):
     """Grava em disco (os anuais têm centenas de MB) e devolve o caminho, ou None."""
     for t in range(1, 4):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=1800) as r, open(destino, 'wb') as f:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=1800, context=CTX) as r, open(destino, 'wb') as f:
                 while True:
                     b = r.read(1 << 20)
                     if not b:
@@ -149,6 +158,8 @@ def main(saida, filtro=''):
     urfs = {r['CO_URF']: r.get('NO_URF', '') for r in tabela('URF.csv')}
     ncm_sh4 = {k: (v.get('CO_SH4') or k[:4]) for k, v in ncm.items()}
     log(f'tabelas: {len(paises)} países, {len(ncm)} NCM, {len(sh4)} SH4')
+    if not paises or not ncm:
+        log('tabelas do MDIC indisponíveis: nada será publicado hoje'); sys.exit(1)
     pares_jp = {c for c, r in paises.items() if r.get('NO_PAIS') in PARES_JAPAO}
     ua, ap = anos[-1], anos[-2]
 
@@ -171,8 +182,9 @@ def main(saida, filtro=''):
         for f, pref in (('exp', 'EXP'), ('imp', 'IMP')):
             arq = baixar(MDIC + f'comexstat-bd/ncm/{pref}_{ano}.csv', os.path.join(tmp, f'{pref}_{ano}.csv'))
             if not arq:
-                log(f'sem arquivo {pref}_{ano}')
-                continue
+                # sem o arquivo do MDIC não publica nada: o site segue com os dados da véspera em vez de ficar vazio
+                log(f'sem arquivo {pref}_{ano}: nada será publicado hoje')
+                sys.exit(1)
             n = 0
             with open(arq, encoding='latin-1', newline='') as fh:
                 for r in csv.DictReader(fh, delimiter=';'):
