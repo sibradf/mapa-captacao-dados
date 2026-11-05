@@ -160,7 +160,11 @@ def main(saida, filtro=''):
     por_via = {f: dd(lambda: dd(float)) for f in ('exp', 'imp')}
     uf_sh4 = dd(lambda: dd(lambda: dd(float)))                     # pais -> uf -> sh4 (exp do ano atual)
     total_br = {f: dd(float) for f in ('exp', 'imp')}
-    total_mes = {f: dd(float) for f in ('exp', 'imp')}                # gabarito do validador: Brasil inteiro por mês
+    # gabarito do validador: soma dos 27 estados por mês e por UF/ano (o Mapa não guarda UF não declarada, "ND")
+    UF27 = set('AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC SE SP TO'.split())
+    total_mes = {f: dd(float) for f in ('exp', 'imp')}
+    total_nd = {f: dd(float) for f in ('exp', 'imp')}
+    uf_ano = {f: dd(float) for f in ('exp', 'imp')}
     mundo_sh4 = dd(float)                                          # exp do Brasil ao mundo por sh4 (ano completo)
     ultimo = {'exp': (0, 0), 'imp': (0, 0)}
     for ano in anos:
@@ -177,7 +181,11 @@ def main(saida, filtro=''):
                     p = r['CO_PAIS']
                     n += 1
                     total_br[f][a] += v
-                    total_mes[f][(a, m)] += v
+                    if r['SG_UF_NCM'] in UF27:
+                        total_mes[f][(a, m)] += v
+                        uf_ano[f][(a, r['SG_UF_NCM'])] += v
+                    else:
+                        total_nd[f][a] += v
                     if (a, m) > ultimo[f]:
                         ultimo[f] = (a, m)
                     s4 = ncm_sh4.get(r['CO_NCM'], r['CO_NCM'][:4])
@@ -282,11 +290,29 @@ def main(saida, filtro=''):
     if not filtro or filtro == 'todos':
         with open(os.path.join(saida, 'paises.json'), 'w', encoding='utf-8') as fo:
             json.dump({'gerado': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'), 'ano': ap, 'ultimo_mes': [ua, mes_ult], 'paises': indice}, fo, ensure_ascii=False)
-    # gabarito para o validador do Mapa de Governo: totais oficiais do Brasil por mês (MDIC, arquivos anuais)
+    # anos mais antigos: só os totais, para o validador conferir o histórico guardado no Mapa
+    for ano in (anos[0] - 2, anos[0] - 1):
+        for f, pref in (('exp', 'EXP'), ('imp', 'IMP')):
+            arq = baixar(MDIC + f'comexstat-bd/ncm/{pref}_{ano}.csv', os.path.join(tmp, f'{pref}_{ano}.csv'))
+            if not arq:
+                continue
+            with open(arq, encoding='latin-1', newline='') as fh:
+                for r in csv.DictReader(fh, delimiter=';'):
+                    v = float(r['VL_FOB'] or 0); a, m = int(r['CO_ANO']), int(r['CO_MES'])
+                    if r['SG_UF_NCM'] in UF27:
+                        total_mes[f][(a, m)] += v; uf_ano[f][(a, r['SG_UF_NCM'])] += v
+                    else:
+                        total_nd[f][a] += v
+            os.remove(arq)
+            log(f'{pref}_{ano}: totais para o validador')
+    # gabarito para o validador do Mapa de Governo (MDIC, arquivos anuais; só os 27 estados)
     with open(os.path.join(saida, 'gabarito_comex.json'), 'w', encoding='utf-8') as fo:
         json.dump({'gerado': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'), 'fonte': MDIC + 'comexstat-bd/ncm/',
+                   'criterio': 'soma dos 27 estados (SG_UF_NCM); exclui UF não declarada (ND), que o Mapa não guarda',
                    'ultimo_mes': {f: list(ultimo[f]) for f in ('exp', 'imp')},
-                   'mensal': {f: {f'{a}-{m:02d}': round(v, 2) for (a, m), v in sorted(total_mes[f].items())} for f in ('exp', 'imp')}}, fo, ensure_ascii=False)
+                   'mensal': {f: {f'{a}-{m:02d}': round(v, 2) for (a, m), v in sorted(total_mes[f].items())} for f in ('exp', 'imp')},
+                   'uf_ano': {f: {f'{a}-{u}': round(v, 2) for (a, u), v in sorted(uf_ano[f].items())} for f in ('exp', 'imp')},
+                   'nd_ano': {f: {str(a): round(v, 2) for a, v in sorted(total_nd[f].items())} for f in ('exp', 'imp')}}, fo, ensure_ascii=False)
     log('ok')
 
 
