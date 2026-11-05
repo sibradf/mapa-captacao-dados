@@ -16,10 +16,10 @@ FONTES = [
     ('camara', 'Câmara dos Deputados · API', 'https://dadosabertos.camara.leg.br/api/v2/deputados?itens=1'),
     ('senado', 'Senado · API', 'https://legis.senado.leg.br/dadosabertos/senador/lista/atual.json'),
     ('mdic', 'MDIC · Comex Stat (arquivos)', 'https://balanca.mdic.gov.br/balanca/bd/tabelas/PAIS.csv'),
-    ('transferegov', 'Transferegov · downloads', 'https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/siconv_programa.csv.zip'),
+    ('transferegov', 'Transferegov · downloads', 'https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/siconv_programa.zip'),
     ('bcb_ptax', 'Banco Central · PTAX', "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/Moedas?$format=json&$top=1"),
-    ('inep', 'INEP · downloads', 'https://download.inep.gov.br/'),
-    ('datasus', 'DATASUS · TabNet', 'https://tabnet.datasus.gov.br/'),
+    ('inep', 'INEP · microdados', 'https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados'),
+    ('datasus', 'DATASUS · TabNet', 'http://tabnet.datasus.gov.br/cgi/tabcgi.exe?ibge/cnv/poptbr.def'),
     ('inpe_queimadas', 'INPE · queimadas', 'https://dataserver-coids.inpe.br/queimadas/queimadas/focos/csv/'),
     ('inpe_terrabrasilis', 'INPE · TerraBrasilis', 'https://terrabrasilis.dpi.inpe.br/geoserver/ows?service=WMS&request=GetCapabilities'),
     ('github', 'GitHub · dados do robô', 'https://raw.githubusercontent.com/sibradf/mapa-captacao-dados/dados/meta.json'),
@@ -39,6 +39,8 @@ def sonda(url, metodo='HEAD'):
             return sonda(url, 'GET')
         return e.code, round((time.time() - t) * 1000)
     except Exception as e:
+        if metodo == 'HEAD':
+            return sonda(url, 'GET')
         return 0, round((time.time() - t) * 1000)
 
 
