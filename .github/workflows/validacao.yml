@@ -13,10 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/gabarito.py /tmp/val 2>&1 | tee /tmp/val_log.txt
+      - run: python3 scripts/producao_meta.py /tmp/val 2>&1 | tee -a /tmp/val_log.txt || true
       - name: Publicar no ramo validacao
         run: |
           cp /tmp/val_log.txt /tmp/val/ultimo_log.txt
           git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git fetch origin validacao || true
           git checkout --orphan val-novo && git rm -rfq . || true
+          (git checkout origin/validacao -- . 2>/dev/null || true)
           cp /tmp/val/* .
           git add -A && git commit -qm "Gabarito do validador $(date -u +%Y-%m-%d)" && git push -f origin val-novo:validacao
