@@ -1,0 +1,105 @@
+depth=0 C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+verify error:num=20:unable to get local issuer certificate
+verify return:1
+depth=0 C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+verify error:num=21:unable to verify the first certificate
+verify return:1
+depth=0 C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+   i:C = BR, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = AC SERPRO AR46 OV TLS CA 2025
+   a:PKEY: rsaEncryption, 2048 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Oct  9 12:19:39 2026 GMT; NotAfter: Apr 26 12:19:38 2027 GMT
+-----BEGIN CERTIFICATE-----
+MIIG/jCCBeagAwIBAgIQAfzw2uP+elihYdng1ntY+zANBgkqhkiG9w0BAQsFADBy
+MQswCQYDVQQGEwJCUjE7MDkGA1UEChMyU0VSVklDTyBGRURFUkFMIERFIFBST0NF
+U1NBTUVOVE8gREUgREFET1MgKFNFUlBSTykxJjAkBgNVBAMTHUFDIFNFUlBSTyBB
+UjQ2IE9WIFRMUyBDQSAyMDI1MB4XDTI2MTAwOTEyMTkzOVoXDTI3MDQyNjEyMTkz
+OFowgZAxCzAJBgNVBAYTAkJSMRkwFwYDVQQIDBBESVNUUklUTyBGRURFUkFMMREw
+DwYDVQQHDAhCUkFTSUxJQTE7MDkGA1UECgwyU0VSVklDTyBGRURFUkFMIERFIFBS
+T0NFU1NBTUVOVE8gREUgREFET1MgKFNFUlBSTykxFjAUBgNVBAMMDSoubWRpYy5n
+b3YuYnIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDa6L2LS96lE2KJ
+MSeVny9MRdv8CCVSTRm0DdBYOB0DBZ6CtrSCEtzv3RVLSKXQ66oBEpMA6qpk8EoC
+8HD90LE69Fs5DrCFOe8+NluQoLkQnAnfJPE2md08mNHlygWEPnP1vYrj/Rzhztw6
+xAQA9kwKCGM1f55OWbattCLmdEhPnANkwXhH5V/Pwd+I+XHE3ThzxUjX155K+mbi
+cqCAoCvAe/mIlYUKlqBi4vS60l7ZbiJCbBxXk0bsQceFXdPOwngzFB11dsbLXhd8
+VQgPvvE0uDE/JpETBAFfw/EzszVwzF3C9vzXMyV6LbBKl1ioJKU9I9o3dBgAlUil
+wimNXJQjAgMBAAGjggNvMIIDazAYBgNVHREEETAPgg0qLm1kaWMuZ292LmJyMA4G
+A1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNVHQ4EFgQUmU0R
+88w+ElryrJ+js/nEp8vi0OEwZAYDVR0gBF0wWzAIBgZngQwBAgIwQgYKKwYBBAGg
+MgoBAjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9y
+ZXBvc2l0b3J5LzALBgkrBgEEAaAyARQwDAYDVR0TAQH/BAIwADCBoAYIKwYBBQUH
+AQEEgZMwgZAwQQYIKwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29t
+L2NhL2Fjc2VycHJvYXI0Nm92dGxzY2EyMDI1MEsGCCsGAQUFBzAChj9odHRwOi8v
+c2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9hY3NlcnByb2FyNDZvdnRsc2Nh
+MjAyNS5jcnQwHwYDVR0jBBgwFoAUQVCZUXjhdU7B/2cV4S7QsiPUPYYwSQYDVR0f
+BEIwQDA+oDygOoY4aHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9jYS9hY3NlcnBy
+b2FyNDZvdnRsc2NhMjAyNS5jcmwwggGGBgorBgEEAdZ5AgQCBIIBdgSCAXIBcAB1
+AByfaCzp+vBFaVD4G5aKh93bMhDYTObIsuOCUkrEz1mfAAABoSCa5W8AAAQDAEYw
+RAIgKQFKmsftvzF2oMlKkIOVfnPqgDnRFRw26Fr9jOgIy1YCIAOQ5lin3hccl5sZ
+J6rIv85PPsgOEvsA6qlVRIhYHSd6AH8AjspHC6zeavOiBrCkeoS3Rv4fxr+VPiXm
+m07kAkjzxugAAAGhIJrmXQAIAAAFAB/L1P0EAwBIMEYCIQCDm9KwZ6Xpi4nwxT0q
+eh4WiAjxoDZzqkUyDwgnnIHqOwIhALeaYe4vTPrRRqXcWuwvkBPloijpApx2WaLG
+3dyqoTy5AHYAYEyar3p/d18B1Ab8kg3ImesLHH34yVIb+voXdzuXi8kAAAGhIJrn
+GAAABAMARzBFAiAHtwI18vmEx+ggR8ftgVvMwBeSZ6kD4VSZ8mN8nP81hQIhAKzo
+eZ/PjOi0a1NtTTZoenI6coX9wht6qRikMvl3OHroMA0GCSqGSIb3DQEBCwUAA4IB
+AQCXTubVkPO7o11hXhg/9AMprbY0+wxMRpDpzVirPiqxwK2Ydk23WJy/HBKl8bzN
+FsazATIOZ8BuBudKn//gxZMprxJp/S+7qcpJvIh0mtfaw17cP4THx5/La/0WcpXa
+DyAm1qIxWd8tfPqU0sHvSmccvGgecI4ALAiVtR1aJ/Xa4OLghOg1dnhSo/sisLd/
+bdZ8sB29bKwXpPlHIpRVNBuamEoGXgMg0smMBNxkQU6k3amzxR/aeVRjOX4veE2/
+4RFNQiWfpRl7XnRSpRPucLx6Mzo8uYnrSEizKw+B7Msowh8c9IT7d3qtuQuYeo+O
+SbPNMIYT+PrJQgXRGxvPXbUO
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+issuer=C = BR, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = AC SERPRO AR46 OV TLS CA 2025
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 2471 bytes and written 414 bytes
+Verification error: unable to verify the first certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 595E1DDC0168E47C79E07A8573D90F390005AD214423AF7A58EED845E8CDF1B8
+    Session-ID-ctx: 
+    Master-Key: 1C347A8D57A26CE85042DFD448CDB8D0CA8172779CF3F422695B3F2889BD5DE52F97BD3856AF98385A17F24158DD8A1C
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 600 (seconds)
+    TLS session ticket:
+    0000 - 11 d7 ef 93 a1 e3 6e f7-fd 58 a9 b9 93 24 69 d4   ......n..X...$i.
+    0010 - 64 26 cf 65 9a df a9 42-aa 70 54 33 a6 a7 9e 9f   d&.e...B.pT3....
+    0020 - a5 3c b9 ce 8a 79 02 2e-31 36 d4 e9 16 2f b0 a2   .<...y..16.../..
+    0030 - 2f 36 ae 74 2d 0e 3a ce-90 8b 3d a9 72 e4 27 7d   /6.t-.:...=.r.'}
+    0040 - 80 78 ab 57 36 7b 86 cf-ea 1a 6f 8e 6c d9 a8 54   .x.W6{....o.l..T
+    0050 - e6 ee 66 46 33 53 24 40-8f fc 8c 80 77 46 4f 52   ..fF3S$@....wFOR
+    0060 - 4e 88 92 f1 50 f6 e0 21-06 f0 cc e0 67 8a b2 70   N...P..!....g..p
+    0070 - be 91 ec 42 19 23 f1 f9-66 66 07 8f fb e3 8a 3a   ...B.#..ff.....:
+    0080 - 48 2e 93 d7 08 ff eb ee-e2 a8 b5 d1 a0 0d 5a 3e   H.............Z>
+    0090 - df ae a7 84 52 4f dd b4-21 00 94 d1 8f 18 1a c0   ....RO..!.......
+    00a0 - 89 25 10 88 00 15 e4 11-76 38 3d 5d 59 89 92 0a   .%......v8=]Y...
+    00b0 - b2 b8 4d e3 7d c3 2d da-62 43 2b e0 a6 81 9e 8f   ..M.}.-.bC+.....
+    00c0 - 48 c9 3b 3e 31 30 3a f6-8e 23 8b d8 07 2d 0c ea   H.;>10:..#...-..
+
+    Start Time: 1793892271
+    Timeout   : 7200 (sec)
+    Verify return code: 21 (unable to verify the first certificate)
+    Extended master secret: yes
+---
+DONE

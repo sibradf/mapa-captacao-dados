@@ -1,0 +1,16 @@
+subject=C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+issuer=C = BR, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = AC SERPRO AR46 OV TLS CA 2025
+notBefore=Oct  9 12:19:39 2026 GMT
+notAfter=Apr 26 12:19:38 2027 GMT
+Authority Information Access: 
+    OCSP - URI:http://ocsp.globalsign.com/ca/acserproar46ovtlsca2025
+    CA Issuers - URI:http://secure.globalsign.com/cacert/acserproar46ovtlsca2025.crt
+AIA=http://secure.globalsign.com/cacert/acserproar46ovtlsca2025.crt
+subject=C = BR, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = AC SERPRO AR46 OV TLS CA 2025
+issuer=C = BE, O = GlobalSign nv-sa, CN = GlobalSign Root R46
+notBefore=Oct 15 03:10:25 2025 GMT
+notAfter=Oct 15 00:00:00 2030 GMT
+out/leaf.pem: OK
+ 0 s:C = BR, ST = DISTRITO FEDERAL, L = BRASILIA, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = *.mdic.gov.br
+   i:C = BR, O = SERVICO FEDERAL DE PROCESSAMENTO DE DADOS (SERPRO), CN = AC SERPRO AR46 OV TLS CA 2025
+    Verify return code: 21 (unable to verify the first certificate)
