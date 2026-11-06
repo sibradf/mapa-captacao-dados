@@ -1,0 +1,265 @@
+17:40:14 tabelas: 281 países, 13746 NCM, 1274 SH4
+17:40:27 EXP_2024: 1603796 linhas
+17:40:45 IMP_2024: 2273708 linhas
+17:40:59 EXP_2025: 1709746 linhas
+17:41:18 IMP_2025: 2396286 linhas
+17:41:29 EXP_2026: 1272295 linhas
+17:41:45 IMP_2026: 1858461 linhas
+17:41:45 252 países com comércio
+17:41:50 160 China: exp 99940 mi · 15 oport · câmbio CNY 0 · 40 notícias
+17:41:55 249 Estados Unidos: exp 37682 mi · 15 oport · câmbio USD 275 · 40 notícias
+17:42:00 063 Argentina: exp 18105 mi · 15 oport · câmbio ARS 0 · 40 notícias
+17:42:05 023 Alemanha: exp 6524 mi · 15 oport · câmbio EUR 275 · 28 notícias
+17:42:10 361 Índia: exp 6866 mi · 15 oport · câmbio INR 0 · 40 notícias
+17:42:13 573 Países Baixos (Holanda): exp 11727 mi · 15 oport · câmbio EUR 275 · 12 notícias
+17:42:18 493 México: exp 7729 mi · 15 oport · câmbio MXN 0 · 40 notícias
+17:42:22 245 Espanha: exp 8783 mi · 15 oport · câmbio EUR 275 · 40 notícias
+17:42:26 386 Itália: exp 5362 mi · 15 oport · câmbio EUR 275 · 22 notícias
+17:42:30 158 Chile: exp 7176 mi · 15 oport · câmbio CLP 0 · 22 notícias
+17:42:34 399 Japão: exp 5489 mi · 15 oport · câmbio JPY 275 · 37 notícias
+17:42:39 676 Rússia: exp 1523 mi · 15 oport · câmbio RUB 0 · 14 notícias
+17:42:43 190 Coreia do Sul: exp 5467 mi · 15 oport · câmbio KRW 0 · 15 notícias
+17:42:47 741 Singapura: exp 7353 mi · 15 oport · câmbio SGD 0 · 11 notícias
+17:42:52 149 Canadá: exp 7252 mi · 15 oport · câmbio CAD 275 · 22 notícias
+17:42:56 275 França: exp 3097 mi · 15 oport · câmbio EUR 275 · 29 notícias
+17:43:01 628 Reino Unido: exp 4027 mi · 15 oport · câmbio GBP 275 · 7 notícias
+17:43:05 858 Vietnã: exp 3761 mi · 15 oport · câmbio VND 0 · 14 notícias
+17:43:10 586 Paraguai: exp 4013 mi · 15 oport · câmbio PYG 0 · 38 notícias
+17:43:14 053 Arábia Saudita: exp 3116 mi · 15 oport · câmbio SAR 0 · 10 notícias
+17:43:18 365 Indonésia: exp 4132 mi · 15 oport · câmbio IDR 0 · 17 notícias
+17:43:22 087 Bélgica: exp 4038 mi · 15 oport · câmbio EUR 275 · 1 notícias
+17:43:27 776 Tailândia: exp 3137 mi · 15 oport · câmbio THB 0 · 6 notícias
+17:43:31 827 Turquia: exp 4145 mi · 15 oport · câmbio TRY 0 · 34 notícias
+17:43:36 845 Uruguai: exp 3537 mi · 15 oport · câmbio UYU 0 · 24 notícias
+17:43:40 169 Colômbia: exp 3434 mi · 15 oport · câmbio COP 0 · 19 notícias
+17:43:46 767 Suíça: exp 2023 mi · 15 oport · câmbio CHF 275 · 20 notícias
+17:43:50 240 Egito: exp 3726 mi · 15 oport · câmbio EGP 0 · 13 notícias
+17:43:54 455 Malásia: exp 3532 mi · 15 oport · câmbio MYR 0 · 19 notícias
+17:43:59 589 Peru: exp 3182 mi · 15 oport · câmbio PEN 0 · 19 notícias
+17:44:03 607 Portugal: exp 3298 mi · 15 oport · câmbio EUR 275 · 40 notícias
+17:44:07 244 Emirados Árabes Unidos: exp 3765 mi · 15 oport · câmbio AED 0 · 2 notícias
+17:44:11 161 Taiwan (Formosa): exp 1301 mi · 15 oport · câmbio TWD 0 · 6 notícias
+17:44:15 059 Argélia: exp 2332 mi · 15 oport · câmbio - 0 · 3 notícias
+17:44:20 764 Suécia: exp 903 mi · 15 oport · câmbio SEK 275 · 6 notícias
+17:44:24 372 Irã: exp 2921 mi · 15 oport · câmbio - 0 · 9 notícias
+17:44:27 081 Bangladesh: exp 2710 mi · 15 oport · câmbio - 0 · 18 notícias
+17:44:32 474 Marrocos: exp 1366 mi · 15 oport · câmbio MAD 0 · 15 notícias
+17:44:36 267 Filipinas: exp 2362 mi · 15 oport · câmbio PHP 0 · 16 notícias
+17:44:41 603 Polônia: exp 1552 mi · 15 oport · câmbio PLN 0 · 8 notícias
+17:44:45 097 Bolívia: exp 1312 mi · 15 oport · câmbio BOB 0 · 28 notícias
+17:44:50 528 Nigéria: exp 1020 mi · 15 oport · câmbio NGN 0 · 16 notícias
+17:44:56 538 Noruega: exp 1536 mi · 15 oport · câmbio NOK 275 · 21 notícias
+17:45:00 351 Hong Kong: exp 1424 mi · 15 oport · câmbio HKD 0 · 7 notícias
+17:45:05 756 África do Sul: exp 1467 mi · 15 oport · câmbio ZAR 0 · 21 notícias
+17:45:09 232 Dinamarca: exp 604 mi · 15 oport · câmbio DKK 275 · 2 notícias
+17:45:13 556 Omã: exp 1199 mi · 15 oport · câmbio - 0 · 1 notícias
+17:45:17 383 Israel: exp 569 mi · 15 oport · câmbio ILS 0 · 40 notícias
+17:45:22 069 Austrália: exp 777 mi · 15 oport · câmbio AUD 275 · 13 notícias
+17:45:26 375 Irlanda: exp 453 mi · 15 oport · câmbio EUR 275 · 7 notícias
+17:45:31 576 Paquistão: exp 1565 mi · 15 oport · câmbio PKR 0 · 4 notícias
+17:45:34 072 Áustria: exp 139 mi · 12 oport · câmbio EUR 275 · 7 notícias
+17:45:38 580 Panamá: exp 1587 mi · 15 oport · câmbio - 0 · 9 notícias
+17:45:42 271 Finlândia: exp 505 mi · 15 oport · câmbio EUR 275 · 6 notícias
+17:45:45 369 Iraque: exp 1485 mi · 15 oport · câmbio - 0 · 2 notícias
+17:45:49 239 Equador: exp 1097 mi · 15 oport · câmbio - 0 · 21 notícias
+17:45:53 850 Venezuela: exp 838 mi · 15 oport · câmbio VES 0 · 40 notícias
+17:45:57 040 Angola: exp 593 mi · 15 oport · câmbio - 0 · 9 notícias
+17:46:01 611 Porto Rico: exp 305 mi · 15 oport · câmbio - 0 · 4 notícias
+17:46:04 080 Barein: exp 878 mi · 15 oport · câmbio - 0 · 0 notícias
+17:46:08 337 Guiana: exp 450 mi · 15 oport · câmbio - 0 · 18 notícias
+17:46:12 105 Brasil: exp 374 mi · 15 oport · câmbio - 0 · 40 notícias
+17:46:17 154 Catar: exp 373 mi · 15 oport · câmbio QAR 0 · 4 notícias
+17:46:21 791 Tcheca, República: exp 65 mi · 6 oport · câmbio CZK 0 · 0 notícias
+17:46:25 193 Costa do Marfim: exp 225 mi · 15 oport · câmbio - 0 · 2 notícias
+17:46:29 647 República Dominicana: exp 762 mi · 15 oport · câmbio - 0 · 0 notícias
+17:46:32 815 Trinidad e Tobago: exp 310 mi · 15 oport · câmbio - 0 · 0 notícias
+17:46:36 111 Bulgária: exp 657 mi · 15 oport · câmbio - 0 · 2 notícias
+17:46:41 355 Hungria: exp 197 mi · 15 oport · câmbio HUF 0 · 4 notícias
+17:46:45 670 Romênia: exp 291 mi · 15 oport · câmbio RON 0 · 1 notícias
+17:46:49 317 Guatemala: exp 569 mi · 15 oport · câmbio - 0 · 1 notícias
+17:46:53 289 Gana: exp 396 mi · 15 oport · câmbio - 0 · 5 notícias
+17:46:56 403 Jordânia: exp 548 mi · 15 oport · câmbio - 0 · 3 notícias
+17:47:00 196 Costa Rica: exp 433 mi · 15 oport · câmbio - 0 · 2 notícias
+17:47:04 301 Grécia: exp 510 mi · 15 oport · câmbio EUR 275 · 10 notícias
+17:47:07 438 Líbia: exp 587 mi · 15 oport · câmbio - 0 · 0 notícias
+17:47:11 246 Eslovênia: exp 358 mi · 15 oport · câmbio EUR 275 · 1 notícias
+17:47:15 247 Eslováquia: exp 25 mi · 3 oport · câmbio EUR 275 · 1 notícias
+17:47:18 434 Libéria: exp 494 mi · 15 oport · câmbio - 0 · 0 notícias
+17:47:22 431 Líbano: exp 462 mi · 15 oport · câmbio - 0 · 3 notícias
+17:47:26 077 Bahamas: exp 199 mi · 15 oport · câmbio - 0 · 0 notícias
+17:47:29 888 Congo, República Democrática: exp 250 mi · 15 oport · câmbio - 0 · 2 notícias
+17:47:33 281 Gabão: exp 108 mi · 10 oport · câmbio - 0 · 1 notícias
+17:47:37 198 Coveite (Kuweit): exp 351 mi · 15 oport · câmbio KWD 0 · 0 notícias
+17:47:41 291 Geórgia: exp 385 mi · 15 oport · câmbio - 0 · 2 notícias
+17:47:45 728 Senegal: exp 378 mi · 15 oport · câmbio - 0 · 3 notícias
+17:47:48 820 Tunísia: exp 289 mi · 15 oport · câmbio - 0 · 0 notícias
+17:47:52 800 Togo: exp 369 mi · 15 oport · câmbio - 0 · 0 notícias
+17:47:56 357 Iêmen: exp 357 mi · 15 oport · câmbio - 0 · 0 notícias
+17:48:00 199 Cuba: exp 283 mi · 15 oport · câmbio - 0 · 18 notícias
+17:48:03 476 Marshall, Ilhas: exp 281 mi · 15 oport · câmbio - 0 · 0 notícias
+17:48:07 329 Guiné: exp 244 mi · 15 oport · câmbio - 0 · 2 notícias
+17:48:11 379 Islândia: exp 219 mi · 15 oport · câmbio - 0 · 1 notícias
+17:48:14 145 Camarões: exp 188 mi · 15 oport · câmbio - 0 · 0 notícias
+17:48:18 488 Mauritânia: exp 225 mi · 15 oport · câmbio - 0 · 0 notícias
+17:48:22 153 Cazaquistão: exp 45 mi · 3 oport · câmbio - 0 · 2 notícias
+17:48:26 548 Nova Zelândia: exp 134 mi · 11 oport · câmbio NZD 0 · 22 notícias
+17:48:30 141 Camboja: exp 35 mi · 3 oport · câmbio - 0 · 3 notícias
+17:48:34 687 El Salvador: exp 188 mi · 14 oport · câmbio - 0 · 7 notícias
+17:48:38 345 Honduras: exp 170 mi · 14 oport · câmbio - 0 · 0 notícias
+17:48:41 750 Sri Lanka: exp 98 mi · 10 oport · câmbio - 0 · 3 notícias
+17:48:45 847 Uzbequistão: exp 119 mi · 13 oport · câmbio - 0 · 7 notícias
+17:48:49 824 Turcomenistão: exp 19 mi · 2 oport · câmbio - 0 · 0 notícias
+17:48:52 467 Malta: exp 167 mi · 14 oport · câmbio EUR 275 · 2 notícias
+17:48:56 521 Nicarágua: exp 155 mi · 13 oport · câmbio - 0 · 7 notícias
+17:49:00 251 Estônia: exp 102 mi · 10 oport · câmbio EUR 275 · 2 notícias
+17:49:03 831 Ucrânia: exp 72 mi · 5 oport · câmbio - 0 · 15 notícias
+17:49:07 177 Congo: exp 156 mi · 12 oport · câmbio - 0 · 4 notícias
+17:49:10 445 Luxemburgo: exp 83 mi · 9 oport · câmbio EUR 275 · 2 notícias
+17:49:14 285 Gâmbia: exp 146 mi · 13 oport · câmbio - 0 · 0 notícias
+17:49:18 427 Letônia: exp 99 mi · 9 oport · câmbio EUR 275 · 1 notícias
+17:49:21 229 Benin: exp 136 mi · 11 oport · câmbio - 0 · 2 notícias
+17:49:25 195 Croácia: exp 96 mi · 8 oport · câmbio EUR 275 · 3 notícias
+17:49:29 442 Lituânia: exp 42 mi · 3 oport · câmbio EUR 275 · 1 notícias
+17:49:32 017 Albânia: exp 125 mi · 10 oport · câmbio - 0 · 2 notícias
+17:49:36 737 Sérvia: exp 66 mi · 5 oport · câmbio - 0 · 40 notícias
+17:49:40 748 Somália: exp 126 mi · 11 oport · câmbio - 0 · 0 notícias
+17:49:44 623 Quênia: exp 123 mi · 12 oport · câmbio - 0 · 2 notícias
+17:49:47 391 Jamaica: exp 98 mi · 10 oport · câmbio - 0 · 2 notícias
+17:49:51 331 Guiné Equatorial: exp 43 mi · 3 oport · câmbio - 0 · 0 notícias
+17:49:55 485 Maurício: exp 72 mi · 5 oport · câmbio - 0 · 3 notícias
+17:49:58 341 Haiti: exp 71 mi · 6 oport · câmbio - 0 · 6 notícias
+17:50:02 715 Santa Lúcia: exp 69 mi · 6 oport · câmbio - 0 · 0 notícias
+17:50:06 866 Virgens, Ilhas (Americanas): exp 68 mi · 6 oport · câmbio - 0 · 0 notícias
+17:50:10 064 Armênia: exp 50 mi · 5 oport · câmbio - 0 · 0 notícias
+17:50:13 163 Chipre: exp 62 mi · 5 oport · câmbio EUR 275 · 3 notícias
+17:50:17 578 Palestina: exp 64 mi · 5 oport · câmbio - 0 · 14 notícias
+17:50:21 065 Aruba: exp 63 mi · 5 oport · câmbio - 0 · 0 notícias
+17:50:24 498 Montenegro: exp 59 mi · 3 oport · câmbio - 0 · 8 notícias
+17:50:28 137 Cayman, Ilhas: exp 58 mi · 6 oport · câmbio - 0 · 0 notícias
+17:50:32 735 Serra Leoa: exp 57 mi · 5 oport · câmbio - 0 · 0 notícias
+17:50:35 770 Suriname: exp 55 mi · 6 oport · câmbio - 0 · 4 notícias
+17:50:39 200 Curaçao: exp 53 mi · 5 oport · câmbio - 0 · 1 notícias
+17:50:43 505 Moçambique: exp 43 mi · 3 oport · câmbio - 0 · 8 notícias
+17:50:46 093 Mianmar: exp 39 mi · 3 oport · câmbio - 0 · 0 notícias
+17:50:50 780 Tanzânia: exp 48 mi · 4 oport · câmbio - 0 · 2 notícias
+17:50:54 127 Cabo Verde: exp 46 mi · 3 oport · câmbio - 0 · 3 notícias
+17:50:58 449 Macedônia: exp 20 mi · 2 oport · câmbio - 0 · 0 notícias
+17:51:01 420 Laos: exp 22 mi · 2 oport · câmbio - 0 · 0 notícias
+17:51:05 744 Síria: exp 39 mi · 3 oport · câmbio - 0 · 3 notícias
+17:51:08 043 Antígua e Barbuda: exp 35 mi · 3 oport · câmbio - 0 · 0 notícias
+17:51:12 108 Brunei: exp 1 mi · 0 oport · câmbio - 0 · 1 notícias
+17:51:16 253 Etiópia: exp 31 mi · 3 oport · câmbio - 0 · 0 notícias
+17:51:19 083 Barbados: exp 32 mi · 3 oport · câmbio - 0 · 1 notícias
+17:51:23 440 Liechtenstein: exp 17 mi · 2 oport · câmbio - 0 · 0 notícias
+17:51:27 000 Não Definido: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:51:30 293 Gibraltar: exp 29 mi · 2 oport · câmbio - 0 · 0 notícias
+17:51:34 507 Namíbia: exp 28 mi · 3 oport · câmbio - 0 · 0 notícias
+17:51:38 073 Azerbaijão: exp 27 mi · 3 oport · câmbio - 0 · 3 notícias
+17:51:41 461 Maldivas: exp 24 mi · 3 oport · câmbio - 0 · 2 notícias
+17:51:45 098 Bósnia-Herzegovina: exp 12 mi · 0 oport · câmbio - 0 · 0 notícias
+17:51:49 783 Djibuti: exp 21 mi · 2 oport · câmbio - 0 · 0 notícias
+17:51:52 450 Madagascar: exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:51:56 788 Chade: exp 17 mi · 2 oport · câmbio - 0 · 1 notícias
+17:52:00 697 San Marino: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:03 863 Virgens, Ilhas (Britânicas): exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:07 297 Granada: exp 15 mi · 0 oport · câmbio - 0 · 1 notícias
+17:52:11 088 Belize: exp 14 mi · 0 oport · câmbio - 0 · 3 notícias
+17:52:15 090 Bermudas: exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:18 085 Belarus: exp 9 mi · 0 oport · câmbio - 0 · 2 notícias
+17:52:22 359 Ilha de Man: exp 14 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:26 542 Nova Caledônia: exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:29 699 Sint Maarten: exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:33 599 Polinésia Francesa: exp 13 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:37 731 Seicheles: exp 11 mi · 0 oport · câmbio - 0 · 1 notícias
+17:52:40 795 Timor Leste: exp 12 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:44 531 Niue: exp 11 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:47 173 Comores: exp 11 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:51 031 Burkina Faso: exp 10 mi · 0 oport · câmbio - 0 · 0 notícias
+17:52:55 833 Uganda: exp 9 mi · 0 oport · câmbio - 0 · 1 notícias
+17:52:59 495 Mônaco: exp 0 mi · 0 oport · câmbio - 0 · 2 notícias
+17:53:02 810 Tonga: exp 8 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:06 489 Mayotte: exp 8 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:10 494 Moldávia: exp 1 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:13 890 Zâmbia: exp 7 mi · 0 oport · câmbio - 0 · 2 notícias
+17:53:17 665 Zimbábue: exp 5 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:20 705 São Vicente e Granadinas: exp 7 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:24 235 Dominica: exp 7 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:27 458 Malavi: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:31 477 Martinica: exp 7 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:35 640 República Centro-Africana: exp 6 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:38 325 Guiana Francesa: exp 6 mi · 0 oport · câmbio - 0 · 7 notícias
+17:53:42 309 Guadalupe: exp 6 mi · 0 oport · câmbio - 0 · 4 notícias
+17:53:46 447 Macau: exp 4 mi · 0 oport · câmbio - 0 · 4 notícias
+17:53:49 695 São Cristóvão e Névis: exp 5 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:53 334 Guiné-Bissau: exp 5 mi · 0 oport · câmbio - 0 · 0 notícias
+17:53:57 760 Sudão do Sul: exp 5 mi · 0 oport · câmbio - 0 · 1 notícias
+17:54:00 497 Mongólia: exp 4 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:04 660 Reunião: exp 5 mi · 0 oport · câmbio - 0 · 29 notícias
+17:54:08 690 Samoa: exp 4 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:12 545 Papua Nova Guiné: exp 4 mi · 0 oport · câmbio - 0 · 1 notícias
+17:54:15 013 Afeganistão: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:19 720 São Tomé e Príncipe: exp 4 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:23 625 Quirguistão: exp 1 mi · 0 oport · câmbio - 0 · 1 notícias
+17:54:26 426 Lesoto: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:30 099 Bonaire, Saint Eustatius e Saba: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:34 823 Turcas e Caicos, Ilhas: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:37 517 Nepal: exp 3 mi · 0 oport · câmbio - 0 · 1 notícias
+17:54:41 525 Níger: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:45 551 Vanuatu: exp 3 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:48 101 Botsuana: exp 2 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:52 675 Ruanda: exp 2 mi · 0 oport · câmbio - 0 · 3 notícias
+17:54:56 698 São Martinho, Ilha de (parte francesa): exp 2 mi · 0 oport · câmbio - 0 · 0 notícias
+17:54:59 119 Butão: exp 1 mi · 0 oport · câmbio - 0 · 1 notícias
+17:55:03 693 São Bartolomeu: exp 2 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:07 464 Mali: exp 2 mi · 0 oport · câmbio - 0 · 1 notícias
+17:55:10 759 Sudão: exp 1 mi · 0 oport · câmbio - 0 · 2 notícias
+17:55:14 575 Palau: exp 1 mi · 0 oport · câmbio - 0 · 1 notícias
+17:55:18 870 Fiji: exp 1 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:21 041 Anguilla: exp 1 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:25 566 Pacífico, Ilhas do (EUA): exp 1 mi · 0 oport · câmbio - 0 · 9 notícias
+17:55:29 313 Guam: exp 1 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:32 115 Burundi: exp 1 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:36 691 Samoa Americana: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:39 511 Christmas (Navidad), Ilha: exp 0 mi · 0 oport · câmbio - 0 · 2 notícias
+17:55:43 772 Tadjiquistão: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:46 805 Toquelau: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:50 754 Suazilândia: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:54 593 Pitcairn: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:55:57 501 Montserrat: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:01 015 Aland, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:04 535 Norfolk, Ilha: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:08 782 Território Britânico do Oceano Índico: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:12 499 Micronésia: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:15 243 Eritreia: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:19 187 Coreia do Norte: exp 0 mi · 0 oport · câmbio - 0 · 3 notícias
+17:56:23 875 Wallis e Futuna, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:26 508 Nauru: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:30 165 Cocos (Keeling), Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 1 notícias
+17:56:34 037 Andorra: exp 0 mi · 0 oport · câmbio - 0 · 1 notícias
+17:56:37 343 Heard e ilhas mcdonald, Ilha: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:41 828 Tuvalu: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:44 781 Terras Austrais Francesas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:48 102 Bouvet, Ilha: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:52 677 Salomão, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 2 notícias
+17:56:55 255 Falkland (Malvinas): exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:56:59 472 Marianas do Norte, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:02 259 Faroe, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:06 321 Guernsey: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:10 042 Antártica: exp 0 mi · 0 oport · câmbio - 0 · 6 notícias
+17:57:13 292 Geórgia do Sul e Sandwich do Sul, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:17 183 Cook, Ilhas: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:21 411 Kiribati: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:24 848 Vaticano: exp 0 mi · 0 oport · câmbio - 0 · 4 notícias
+17:57:28 305 Groenlândia: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:31 755 Svalbard e Jan Mayen: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:35 995 Bancos Centrais: exp 0 mi · 0 oport · câmbio - 0 · 3 notícias
+17:57:39 710 Santa Helena: exp 0 mi · 0 oport · câmbio - 0 · 1 notícias
+17:57:43 700 São Pedro e Miquelon: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:46 393 Jersey: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:50 685 Saara Ocidental: exp 0 mi · 0 oport · câmbio - 0 · 0 notícias
+17:57:54 997 Organizações Internacionais: exp 0 mi · 0 oport · câmbio - 0 · 1 notícias
+17:58:04 EXP_2022: totais para o validador
+17:58:19 IMP_2022: totais para o validador
+17:58:30 EXP_2023: totais para o validador
+17:58:45 IMP_2023: totais para o validador
+17:58:45 ok
