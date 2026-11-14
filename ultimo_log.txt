@@ -1,0 +1,24 @@
+ibge_localidades 0 30240
+ibge_sidra 200 406
+transparencia_api 401 214
+transparencia_download 200 463
+camara 200 2929
+senado 200 1639
+mdic 200 1168
+transferegov 200 1114
+bcb_ptax 200 1692
+inep 200 532
+datasus 200 1381
+inpe_queimadas 200 812
+inpe_terrabrasilis 200 749
+github 200 176
+população: 5598 lugares, ano 2026
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos <urlopen error timed out>
+falha https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos <urlopen error timed out>
+tabela 5457: sem resposta do IBGE; nada será publicado hoje
