@@ -1,0 +1,13 @@
+{
+ "data_carga_governo": "09/11/2026 06:34:43",
+ "detalhes": 83732,
+ "processado_em": "2026-11-14T16:40:19+00:00",
+ "ano_min": 2019,
+ "programas": 4778,
+ "programas_abertos": 199,
+ "propostas": 327605,
+ "habilitados": 18288,
+ "programas_com_lista_fechada": 38,
+ "falhas_download": [],
+ "fonte": "https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/"
+}
