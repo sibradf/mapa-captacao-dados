@@ -1,0 +1,33 @@
+name: CAUC dos municípios (Tesouro)
+on:
+  schedule:
+    - cron: '25 12 * * 1-5'   # 09:25 de Brasília, dias úteis (o Tesouro divulga em dias úteis)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/cauc.py', '.github/workflows/cauc.yml']
+permissions:
+  contents: write
+concurrency: cauc
+jobs:
+  cauc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install --quiet openpyxl
+      - name: Baixar e processar
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/cauc
+          python3 scripts/cauc.py /tmp/cauc 2>&1 | tee /tmp/cauc_log.txt
+      - name: Publicar no ramo cauc
+        if: always()
+        run: |
+          mkdir -p /tmp/cauc; cp /tmp/cauc_log.txt /tmp/cauc/ultimo_log.txt || true
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git fetch origin cauc || true
+          git checkout --orphan cauc-novo && git rm -rfq . || true
+          (git checkout origin/cauc -- . 2>/dev/null || true)
+          cp /tmp/cauc/* .
+          git add -A && git commit -qm "CAUC $(date -u +%Y-%m-%d)" && git push -f origin cauc-novo:cauc
