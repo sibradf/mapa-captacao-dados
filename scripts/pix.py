@@ -28,7 +28,7 @@ def get(url, tempo=180):
     raise RuntimeError('não baixou ' + url)
 
 
-def tudo(tabela, campos, filtro='', chave='', lote=5000):
+def tudo(tabela, campos, filtro='', chave='', lote=1000):  # a API devolve no máximo 1000 por página
     """Lê a tabela inteira em páginas (ordenada pela chave para não perder linhas)"""
     out, off = [], 0
     while True:
