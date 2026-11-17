@@ -1,0 +1,32 @@
+name: Emendas Pix dos municípios (Transferegov)
+on:
+  schedule:
+    - cron: '05 11 * * *'   # 08:05 de Brasília, depois do robô principal (que publica o cnpj_ibge)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/pix.py', '.github/workflows/pix.yml']
+permissions:
+  contents: write
+concurrency: pix
+jobs:
+  pix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixar e processar
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/pix
+          python3 scripts/pix.py /tmp/pix 2>&1 | tee /tmp/pix_log.txt
+      - name: Publicar no ramo pix
+        if: always()
+        run: |
+          mkdir -p /tmp/pix; cp /tmp/pix_log.txt /tmp/pix/ultimo_log.txt || true
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git fetch origin pix || true
+          git checkout --orphan pix-novo && git rm -rfq . || true
+          (git checkout origin/pix -- . 2>/dev/null || true)
+          cp /tmp/pix/* .
+          git add -A && git commit -qm "Emendas Pix $(date -u +%Y-%m-%d)" && git push -f origin pix-novo:pix
