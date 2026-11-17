@@ -1,5 +1,9 @@
 name: Sondar arquivos
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sondar.yml']
 permissions:
   contents: write
 jobs:
@@ -8,7 +12,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/sondar.py siconv_meta_crono_fisico siconv_etapa_crono_fisico siconv_plano_aplicacao_detalhado siconv_pagamento siconv_historico_situacao siconv_licitacao siconv_contrato siconv_desembolso > /tmp/sondagem.txt 2>&1 || true
+      - run: python3 scripts/sondar.py siconv_programa_proponentes siconv_convenio siconv_emenda siconv_proposta siconv_programa > /tmp/sondagem.txt 2>&1 || true
       - name: Publicar resultado no ramo sondagem
         run: |
           git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
