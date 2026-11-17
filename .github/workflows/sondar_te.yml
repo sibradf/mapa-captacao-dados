@@ -1,0 +1,20 @@
+name: Sondar transferências especiais
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/sondar_te.py', '.github/workflows/sondar_te.yml']
+permissions:
+  contents: write
+jobs:
+  sondar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/sondar_te.py > /tmp/sondagem_te.txt 2>&1 || true
+      - name: Publicar no ramo sondagem-te
+        run: |
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git checkout --orphan sondagem-te && git rm -rfq . && cp /tmp/sondagem_te.txt sondagem.txt
+          git add sondagem.txt && git commit -qm "Sondagem TE" && git push -f origin sondagem-te
