@@ -215,6 +215,7 @@ def main(saida):
             hab.add((r['ID_PROGRAMA'], muni_por_id[r['ID_PROPONENTE']]))
     n_hab = gravar(os.path.join(saida, 'habilitados.csv.gz'), ['id_programa', 'ibge'], sorted(hab))
 
+    gravar(os.path.join(saida, 'cnpj_ibge.csv.gz'), ['cnpj', 'ibge'], sorted(cnpj_ibge.items()))  # para o robô das emendas Pix
     n_det = detalhes(saida, props)
 
     meta = {'data_carga_governo': carga, 'detalhes': n_det, 'processado_em': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
