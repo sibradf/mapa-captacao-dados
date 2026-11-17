@@ -5,6 +5,7 @@ Baixa os dados abertos do Transferegov.br (Discricionárias e Legais) e gera arq
   propostas.csv.gz        propostas de MUNICÍPIOS desde ANO_MIN (objeto por extenso, situação, valores, programa,
                           convênio celebrado e emendas parlamentares que a financiaram)
   habilitados.csv.gz      programas com lista fechada de proponentes: id_programa;codigo IBGE do município
+  convenios.csv.gz        convênios de municípios ativos ou com prestação de contas no último ano (vigência, prazo de contas, cláusula suspensiva, valores)
   meta.json               data da carga do governo, data do processamento e contagens
 Só dados públicos. Uso: python3 scripts/processar.py PASTA_DE_SAIDA
 """
@@ -156,10 +157,24 @@ def main(saida):
                                    limpa(r.get('SIT_PROPOSTA'), 80), num(r.get('VL_GLOBAL_PROP')), num(r.get('VL_REPASSE_PROP')),
                                    pp.get(r['ID_PROPOSTA'], ''), '', '', '', '', '', '', '']
     log(f'propostas de municípios desde {ANO_MIN}: {len(props)}')
+    conv = []   # convênios de municípios ainda vivos (ativos ou com prestação de contas no último ano): prazos e dinheiro
+    corte_pc = (HOJE - datetime.timedelta(days=400)).isoformat()
     for r in linhas('siconv_convenio'):
         p = props.get(r['ID_PROPOSTA'])
         if p:
             p[15:21] = [r['NR_CONVENIO'], limpa(r['SIT_CONVENIO'], 60), data(r['DIA_ASSIN_CONV']), num(r['VL_REPASSE_CONV']), num(r['VL_DESEMBOLSADO_CONV']), data(r['DIA_FIM_VIGENC_CONV'])]
+            lim = data(r.get('DIA_LIMITE_PREST_CONTAS'))
+            if (r.get('INSTRUMENTO_ATIVO') or '').upper().startswith('SIM') or (lim and lim >= corte_pc):
+                conv.append([r['NR_CONVENIO'], r['ID_PROPOSTA'], p[4], limpa(r.get('SIT_CONVENIO'), 60), limpa(r.get('SUBSITUACAO_CONV'), 80),
+                             (r.get('INSTRUMENTO_ATIVO') or '')[:3], data(r.get('DIA_ASSIN_CONV')), data(r.get('DIA_INIC_VIGENC_CONV')), data(r.get('DIA_FIM_VIGENC_CONV')),
+                             data(r.get('DIA_FIM_VIGENC_ORIGINAL_CONV')), lim, data(r.get('DATA_SUSPENSIVA')), data(r.get('DATA_RETIRADA_SUSPENSIVA')),
+                             limpa(r.get('MOTIVO_SUSPENSAO'), 120), r.get('QTD_PRORROGA') or '', num(r.get('VL_GLOBAL_CONV')), num(r.get('VL_REPASSE_CONV')),
+                             num(r.get('VL_CONTRAPARTIDA_CONV')), num(r.get('VL_EMPENHADO_CONV')), num(r.get('VL_DESEMBOLSADO_CONV')), num(r.get('VL_SALDO_CONTA'))])
+    n_conv = gravar(os.path.join(saida, 'convenios.csv.gz'),
+                    ['nr', 'id_proposta', 'ibge', 'sit', 'subsit', 'ativo', 'assinatura', 'ini_vig', 'fim_vig', 'fim_vig_original', 'limite_pc',
+                     'suspensiva', 'suspensiva_retirada', 'motivo_suspensao', 'prorrogacoes', 'vl_global', 'vl_repasse', 'vl_contrapartida', 'vl_empenhado',
+                     'vl_desembolsado', 'vl_saldo_conta'], conv)
+    log(f'convênios vivos de municípios: {n_conv}')
     emendas = {}
     for r in linhas('siconv_emenda'):
         if r['ID_PROPOSTA'] in props and r.get('NOME_PARLAMENTAR'):
@@ -204,7 +219,7 @@ def main(saida):
 
     meta = {'data_carga_governo': carga, 'detalhes': n_det, 'processado_em': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
             'ano_min': ANO_MIN, 'programas': n_prog, 'programas_abertos': len(abertos), 'propostas': n_prop, 'habilitados': n_hab,
-            'programas_com_lista_fechada': len({h[0] for h in hab}), 'falhas_download': falhas, 'fonte': BASE}
+            'programas_com_lista_fechada': len({h[0] for h in hab}), 'convenios_vivos': n_conv, 'falhas_download': falhas, 'fonte': BASE}
     with open(os.path.join(saida, 'meta.json'), 'w', encoding='utf-8') as f:
         json.dump(meta, f, ensure_ascii=False, indent=1)
     log(json.dumps(meta, ensure_ascii=False))
