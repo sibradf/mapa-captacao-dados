@@ -121,9 +121,10 @@ def valor(v):
         return '!'
     if sem_acento(v).startswith('desab'):
         return 'D'
-    m = re.match(r'^(\d{1,2})/(\d{1,2})/(\d{4})', v)
+    m = re.match(r'^(\d{1,2})/(\d{1,2})/(\d{4}|\d{2})\b', v)  # o Tesouro usa dd/mm/aa
     if m:
-        return f'{int(m.group(3)):04d}-{int(m.group(2)):02d}-{int(m.group(1)):02d}'
+        a = int(m.group(3)); a = a + 2000 if a < 100 else a
+        return f'{a:04d}-{int(m.group(2)):02d}-{int(m.group(1)):02d}'
     m = re.match(r'^(\d{4})-(\d{2})-(\d{2})', v)
     if m:
         return m.group(0)
