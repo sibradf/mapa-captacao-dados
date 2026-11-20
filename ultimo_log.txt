@@ -1,0 +1,12 @@
+19:00:19 cnpj_ibge: 7756
+19:01:02 plano_acao_especial: 57827 linhas
+19:01:03 planos de ação de municípios desde 2020: 52127
+19:01:31 plano_trabalho_especial: 56416 linhas
+19:01:32 orgao_analise_pendente_especial: 1438 linhas
+19:02:26 plano_trabalho_analise_especial: 112479 linhas
+19:02:36 relatorio_gestao_novo_especial: 25957 linhas
+19:03:06 executor_especial: 57374 linhas
+19:03:23 empenho_especial: 60322 linhas
+19:03:44 documento_habil_especial: 57986 linhas
+19:03:44 52127 planos; 0 sem código IBGE pelo CNPJ (o servidor casa pelo nome)
+19:03:46 {"processado_em": "2026-11-20T19:03:46+00:00", "ano_min": 2020, "planos": 52127, "sem_ibge": 0, "situacoes_plano_trabalho": {"CONCLUIDO_NT_TCU": 31107, "Em Ajuste do Plano de Trabalho": 408, "": 1208, "Enviado para Análise": 848, "APROVADO": 16405, "Em Complementação": 1480, "Concluído": 225, "REPROVADO": 388, "Em Elaboração": 58}, "fonte": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/"}
