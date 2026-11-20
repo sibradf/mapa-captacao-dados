@@ -1,0 +1,21 @@
+ibge_localidades 200 227
+ibge_sidra 200 448
+transparencia_api 401 224
+transparencia_download 200 774
+camara 200 4426
+senado 200 1659
+mdic 200 861
+transferegov 200 824
+bcb_ptax 200 216
+inep 200 548
+datasus 200 994
+inpe_queimadas 200 788
+inpe_terrabrasilis 200 971
+github 200 178
+população: 5598 lugares, ano 2026
+5457 52 anos
+289 40 anos
+291 40 anos
+3939 52 anos
+74 52 anos
+3940 13 anos
