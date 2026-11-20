@@ -1,0 +1,30 @@
+20:32:08 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=72b5f371-0c35-4613-8076-c99c821a6410 tentativa 1: <urlopen error [Errno 104] Connection reset by peer>
+20:32:30 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=72b5f371-0c35-4613-8076-c99c821a6410 tentativa 2: <urlopen error [Errno 104] Connection reset by peer>
+20:33:01 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=72b5f371-0c35-4613-8076-c99c821a6410 tentativa 3: <urlopen error [Errno 104] Connection reset by peer>
+20:33:31 pacote 72b5f371-0c35-4613-8076-c99c821a6410 não abriu (não baixou https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=72b5f371-0c35-4613-8076-c99c821a6410); procurando por "CAUC"
+20:33:43 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search?q=CAUC&rows=20 tentativa 1: <urlopen error [Errno 104] Connection reset by peer>
+20:34:04 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search?q=CAUC&rows=20 tentativa 2: <urlopen error [Errno 104] Connection reset by peer>
+20:34:35 falha https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search?q=CAUC&rows=20 tentativa 3: <urlopen error [Errno 104] Connection reset by peer>
+Traceback (most recent call last):
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 70, in escolher_recurso
+    pac = json.loads(http(CKAN + 'package_show?id=' + PACOTE, 60))['result']
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 65, in http
+    raise RuntimeError('não baixou ' + url)
+RuntimeError: não baixou https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=72b5f371-0c35-4613-8076-c99c821a6410
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 215, in <module>
+    main(sys.argv[1] if len(sys.argv) > 1 else '/tmp/cauc')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 140, in main
+    rec, fmt = escolher_recurso()
+               ~~~~~~~~~~~~~~~~^^
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 73, in escolher_recurso
+    res = json.loads(http(CKAN + 'package_search?q=CAUC&rows=20', 60))['result']['results']
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/mapa-captacao-dados/mapa-captacao-dados/scripts/cauc.py", line 65, in http
+    raise RuntimeError('não baixou ' + url)
+RuntimeError: não baixou https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search?q=CAUC&rows=20
