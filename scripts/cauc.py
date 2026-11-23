@@ -65,7 +65,7 @@ def http(url, tempo=300):
     raise RuntimeError('não baixou ' + url)
 
 
-def escolher_recurso():
+def escolher_recurso(alvo='munic'):
     try:
         pac = json.loads(http(CKAN + 'package_show?id=' + PACOTE, 60))['result']
     except Exception as e:
@@ -78,10 +78,10 @@ def escolher_recurso():
         nome = sem_acento((r.get('name') or '') + ' ' + (r.get('url') or ''))
         fmt = (r.get('format') or os.path.splitext(r.get('url') or '')[1].lstrip('.')).lower()
         log(f'  recurso: {r.get("name")!r} formato={fmt} atualizado={r.get("last_modified") or r.get("created")} url={r.get("url")}')
-        if 'munic' in nome and 'metadad' not in nome and fmt in ('csv', 'xlsx', 'xls', 'zip', 'ods'):
+        if alvo in nome and 'metadad' not in nome and fmt in ('csv', 'xlsx', 'xls', 'zip', 'ods'):
             cands.append((r.get('last_modified') or r.get('created') or '', {'csv': 3, 'xlsx': 2, 'zip': 1}.get(fmt, 0), r, fmt))
     if not cands:
-        raise RuntimeError('nenhum recurso de municípios em CSV/XLSX no conjunto do CAUC')
+        raise RuntimeError(f'nenhum recurso "{alvo}" em CSV/XLSX no conjunto do CAUC')
     cands.sort(key=lambda x: (x[0], x[1]), reverse=True)
     return cands[0][2], cands[0][3]
 
@@ -129,6 +129,33 @@ def valor(v):
     if m:
         return m.group(0)
     return '?' + v[:20]  # valor desconhecido: guarda para o validador ver
+
+
+def linha_df(itens, digitos):
+    """Brasília (DF) não está no arquivo de municípios do CAUC: vem no de Estados e DF (CNPJ principal do Distrito Federal).
+    Devolve a linha no mesmo formato dos municípios, ou None se não der (os municípios seguem publicados)."""
+    try:
+        rec, fmt = escolher_recurso('estad')
+        log(f'Estados e DF: baixando {rec.get("url")} ({fmt})')
+        linhas = tabela(http(rec['url'], 300), fmt)
+        h = next((i for i, r in enumerate(linhas[:30]) if sum(1 for c in r if re.match(r'^\s*\d+(?:\.\d+)+', str(c)) and re.match(r'^\s*(\d+(?:\.\d+)+)', str(c)).group(1) in ITENS) >= 10), None)
+        if h is None:
+            log('Estados e DF: cabeçalho com os itens não encontrado'); return None
+        col = {}
+        for i, c in enumerate(linhas[h]):
+            m = re.match(r'^\s*(\d+(?:\.\d+)+)', str(c))
+            if m and m.group(1) in ITENS:
+                col[m.group(1)] = i
+        alvo = next((r for r in linhas[h + 1:] if any(str(c).strip().upper() == 'DF' or 'distrito federal' in sem_acento(c) for c in r)), None)
+        if alvo is None:
+            log('Estados e DF: linha do Distrito Federal não encontrada'); return None
+        vals = [valor(alvo[col[k]]) if k in col and col[k] < len(alvo) else '' for k in itens]
+        vals = ['' if v.startswith('?') else v for v in vals]
+        log(f'Estados e DF: Distrito Federal com {sum(1 for v in vals if v == "!")} pendências')
+        return ['530010' if digitos == 6 else '5300108', 'DF', 'Brasília'] + vals
+    except Exception as e:
+        log(f'Estados e DF: não deu ({e}); segue sem o DF')
+        return None
 
 
 def main(saida):
@@ -195,6 +222,11 @@ def main(saida):
     log(f'{len(rows)} municípios; valores desconhecidos: {dict(list(desconhecidos.items())[:10])}')
     if len(rows) < 5000:
         raise RuntimeError(f'só {len(rows)} municípios; nada publicado')
+
+    if not any(r[0].startswith('53') for r in rows) and not os.environ.get('CAUC_ARQUIVO'):
+        df = linha_df(itens, len(rows[0][0]))
+        if df:
+            rows.append(df)
 
     with gzip.open(os.path.join(saida, 'cauc_municipios.csv.gz'), 'wt', encoding='utf-8', newline='') as f:
         w = csv.writer(f, delimiter=';')
