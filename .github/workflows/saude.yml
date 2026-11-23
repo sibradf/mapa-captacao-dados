@@ -1,0 +1,33 @@
+name: Saúde · DATASUS TabNet (nascimentos, óbitos, leitos)
+on:
+  schedule:
+    - cron: '40 9 * * 1,4'   # segunda e quinta, 06:40 de Brasília (as bases do DATASUS mudam pouco)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['scripts/tabnet.py', '.github/workflows/saude.yml']
+permissions:
+  contents: write
+concurrency: saude
+jobs:
+  tabnet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publicação anterior (fonte que falhar mantém a última)
+        run: |
+          mkdir -p /tmp/saude
+          git fetch origin saude && git --work-tree=/tmp/saude checkout origin/saude -- . || true
+      - name: Consultar o TabNet
+        run: |
+          set -o pipefail
+          python3 scripts/tabnet.py /tmp/saude 2>&1 | tee /tmp/saude_log.txt
+      - name: Publicar no ramo saude
+        if: always()
+        run: |
+          cp /tmp/saude_log.txt /tmp/saude/ultimo_log.txt || true
+          git config user.name "robo-mapadegoverno"; git config user.email "robo@mapadegoverno.com.br"
+          git checkout --orphan saude-novo && git rm -rfq . || true
+          cp /tmp/saude/* .
+          git add -A && git commit -qm "Saúde TabNet $(date -u +%Y-%m-%d)" && git push -f origin saude-novo:saude
