@@ -1,4 +1,4 @@
-name: Saúde · DATASUS TabNet (nascimentos, óbitos, leitos)
+name: Saúde · DATASUS TabNet e atenção primária
 on:
   schedule:
     - cron: '40 9 * * 1,4'   # segunda e quinta, 06:40 de Brasília (as bases do DATASUS mudam pouco)

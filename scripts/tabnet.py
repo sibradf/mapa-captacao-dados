@@ -218,22 +218,90 @@ def fonte(f):
     return linhas, feitos, vazios
 
 
+APS = 'https://relatorioaps-prd.saude.gov.br'
+UFS = [11, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 35, 41, 42, 43, 50, 51, 52, 53]
+
+
+def aps():
+    """Cobertura da atenção primária (API dos relatórios da APS): competência mais recente com dados, como o sistema Saúde fazia"""
+    hoje = datetime.date.today()
+    for k in range(1, 11):
+        a, m = hoje.year, hoje.month - k
+        while m <= 0:
+            a, m = a - 1, m + 12
+        comp = f'{a}{m:02d}'
+        base = f'{APS}/cobertura/aps?unidadeGeografica=MUNICIPIO&nuCompInicio={comp}&nuCompFim={comp}'
+        try:
+            j = json.loads(http_json(base))
+        except Exception as e:
+            log(f'aps {comp}: tudo de uma vez falhou ({e}); estado por estado')
+            j = []
+        if not j:
+            for cu in UFS:
+                try:
+                    j += json.loads(http_json(base + f'&coUf={cu}'))
+                except Exception as e:
+                    log(f'aps {comp} UF {cu}: {e}')
+        q = {}
+        for r in j if isinstance(j, list) else []:
+            if not isinstance(r, dict):
+                continue
+            c = str(r.get('coMunicipioIbge') or '')
+            c = c[:6] if len(c) == 7 else c
+            if len(c) != 6:
+                continue
+            try:
+                pop = float(r.get('qtPopulacao') or 0)
+            except (TypeError, ValueError):
+                continue
+            if pop <= 0:
+                continue
+            cap = r.get('qtCapacidadeEquipe')
+            try:
+                cap = float(cap) if cap is not None and str(cap) != '' else pop * float(r['qtCobertura']) / 100
+            except (TypeError, ValueError, KeyError):
+                continue
+            q[c] = (pop, min(pop, cap))
+        if len(q) > 1000:
+            log(f'aps {comp}: {len(q)} municípios')
+            return comp, [[a, c, ind, round(v, 2)] for c, (p, cb) in q.items() for ind, v in (('q_aps_pop', p), ('q_aps_cob', cb))]
+        log(f'aps {comp}: só {len(q)} municípios')
+    raise RuntimeError('API da atenção primária sem dados nos últimos 10 meses')
+
+
+def http_json(url):
+    for t in range(1, 4):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={**UA, 'Accept': 'application/json'}), timeout=120) as r:
+                return r.read().decode('utf-8')
+        except Exception as e:
+            ultimo = e
+            time.sleep(10 * t)
+    raise RuntimeError(f'{url}: {ultimo}')
+
+
 def main(saida):
     os.makedirs(saida, exist_ok=True)
     mp = os.path.join(saida, 'tabnet_meta.json')
     meta = json.load(open(mp, encoding='utf-8')) if os.path.exists(mp) else {}
-    so = [x for x in sys.argv[2:] if x in DEFS] or list(DEFS)
+    so = [x for x in sys.argv[2:] if x in DEFS or x == 'aps'] or list(DEFS) + ['aps']
     ok = 0
     for f in so:
         t0 = time.time()
         try:
-            linhas, feitos, vazios = fonte(f)
+            if f == 'aps':
+                comp, linhas = aps()
+                feitos, vazios = [int(comp[:4])], []
+            else:
+                linhas, feitos, vazios = fonte(f)
             with gzip.open(os.path.join(saida, f'tabnet_{f}.csv.gz'), 'wt', encoding='utf-8', newline='') as g:
                 w = csv.writer(g, delimiter=';')
                 w.writerow(['ano', 'codigo6', 'ind', 'valor'])
                 w.writerows(linhas)
             meta[f] = {'anos': feitos, 'vazios': vazios, 'linhas': len(linhas), 'gerado': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
-                       'segundos': int(time.time() - t0), 'erro': '', 'def': DEFS[f]}
+                       'segundos': int(time.time() - t0), 'erro': '', 'def': DEFS.get(f, APS)}
+            if f == 'aps':
+                meta[f]['competencia'] = comp
             ok += 1
             log(f'{f}: ok, anos {feitos}, {len(linhas)} linhas')
         except Exception as e:
