@@ -1,0 +1,31 @@
+19:16:45 sinasc 2025/q_pre7: 5571 municípios
+19:16:50 sinasc 2025/q_ces: 5571 municípios
+19:16:56 sinasc 2025/q_adol: 5571 municípios
+19:17:01 sinasc 2025/q_baixo: 5571 municípios
+19:17:06 sinasc 2025/q_prem: 5571 municípios
+19:17:11 sinasc 2024/q_pre7: 5570 municípios
+19:17:15 sinasc 2024/q_ces: 5570 municípios
+19:17:20 sinasc 2024/q_adol: 5570 municípios
+19:17:25 sinasc 2024/q_baixo: 5570 municípios
+19:17:30 sinasc 2024/q_prem: 5570 municípios
+19:17:35 sinasc 2023/q_pre7: 5569 municípios
+19:17:40 sinasc 2023/q_ces: 5569 municípios
+19:17:46 sinasc 2023/q_adol: 5569 municípios
+19:17:52 sinasc 2023/q_baixo: 5569 municípios
+19:17:57 sinasc 2023/q_prem: 5569 municípios
+19:17:57 sinasc: ok, anos [2025, 2024, 2023], 100260 linhas
+19:18:03 sim 2025/caps: 5570 municípios
+19:18:07 sim 2024/caps: 5570 municípios
+19:18:10 sim 2023/caps: 5570 municípios
+19:18:11 sim: ok, anos [2025, 2024, 2023], 100260 linhas
+19:18:13 infantil 2025/total: 3915 municípios
+19:18:13 infantil 2024/total: 4004 municípios
+19:18:14 infantil 2023/total: 4079 municípios
+19:18:14 infantil: ok, anos [2025, 2024, 2023], 11998 linhas
+19:18:16 leitos 2026/existente: 3605 municípios
+19:18:17 leitos 2026/sus: 3573 municípios
+19:18:17 leitos: ok, anos [2026], 7178 linhas
+19:19:09 aps 202610: só 0 municípios
+19:19:40 aps 202609: só 0 municípios
+19:19:45 aps 202608: 5570 municípios
+19:19:45 aps: ok, anos [2026], 11140 linhas

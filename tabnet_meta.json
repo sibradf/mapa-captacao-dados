@@ -1,0 +1,64 @@
+{
+ "sinasc": {
+  "anos": [
+   2025,
+   2024,
+   2023
+  ],
+  "vazios": [],
+  "linhas": 100260,
+  "gerado": "2026-11-26T19:17:57+00:00",
+  "segundos": 79,
+  "erro": "",
+  "def": "sinasc/cnv/nvbr.def"
+ },
+ "sim": {
+  "anos": [
+   2025,
+   2024,
+   2023
+  ],
+  "vazios": [],
+  "linhas": 100260,
+  "gerado": "2026-11-26T19:18:11+00:00",
+  "segundos": 13,
+  "erro": "",
+  "def": "sim/cnv/obt10br.def"
+ },
+ "infantil": {
+  "anos": [
+   2025,
+   2024,
+   2023
+  ],
+  "vazios": [],
+  "linhas": 11998,
+  "gerado": "2026-11-26T19:18:14+00:00",
+  "segundos": 3,
+  "erro": "",
+  "def": "sim/cnv/inf10br.def"
+ },
+ "leitos": {
+  "anos": [
+   2026
+  ],
+  "vazios": [],
+  "linhas": 7178,
+  "gerado": "2026-11-26T19:18:17+00:00",
+  "segundos": 3,
+  "erro": "",
+  "def": "cnes/cnv/leiintbr.def"
+ },
+ "aps": {
+  "anos": [
+   2026
+  ],
+  "vazios": [],
+  "linhas": 11140,
+  "gerado": "2026-11-26T19:19:45+00:00",
+  "segundos": 87,
+  "erro": "",
+  "def": "https://relatorioaps-prd.saude.gov.br",
+  "competencia": "202608"
+ }
+}
