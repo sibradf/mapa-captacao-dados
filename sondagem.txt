@@ -1,0 +1,42 @@
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_trabalho_especial?limit=3&order=id_plano_acao.desc
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?limit=3&ano_plano_acao=eq.2026&order=id_plano_acao.desc
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?limit=3&ano_plano_acao=eq.2025&situacao_plano_acao=neq.CIENTE
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/finalidade_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/historico_pagamento_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/documento_habil_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/programa_especial?limit=3&order=id_programa.desc
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_trabalho_analise_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/orgao_analise_pendente_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/relatorio_gestao_especial?limit=2
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.CIENTE
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.IMPEDIDO
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.APROVADO
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.EM_ANALISE
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.PENDENTE
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.CANCELADO
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.EM_ELABORACAO
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&situacao_plano_acao=eq.ENVIADO
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&ano_plano_acao=eq.2024
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&ano_plano_acao=eq.2025
+  FALHOU HTTP Error 503: Service Unavailable
+### https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?select=id_plano_acao&limit=1&ano_plano_acao=eq.2026
+  FALHOU HTTP Error 503: Service Unavailable
