@@ -1,0 +1,24 @@
+19:29:36 baixou data_carga_siconv (0.0 MB)
+19:29:38 baixou siconv_programa (10.6 MB)
+19:29:40 baixou siconv_programa_proponentes (2.4 MB)
+19:29:42 baixou siconv_proponentes (6.1 MB)
+19:29:44 baixou siconv_programa_proposta (6.2 MB)
+19:29:51 baixou siconv_proposta (196.9 MB)
+19:29:53 baixou siconv_convenio (17.7 MB)
+19:29:55 baixou siconv_emenda (7.9 MB)
+19:29:58 baixou siconv_meta_crono_fisico (107.3 MB)
+19:30:07 baixou siconv_plano_aplicacao_detalhado (280.9 MB)
+19:30:10 baixou siconv_licitacao (26.0 MB)
+19:30:14 baixou siconv_contrato (72.3 MB)
+19:30:16 baixou siconv_desembolso (16.2 MB)
+19:30:21 baixou siconv_historico_situacao (99.6 MB)
+19:30:31 programas no arquivo: 53112
+19:30:48 propostas de municípios desde 2019: 328474
+19:30:52 gravou convenios.csv.gz: 61198 linhas, 2.4 MB
+19:30:52 convênios vivos de municípios: 61198
+19:30:54 gravou programas.csv.gz: 4803 linhas, 0.2 MB
+19:30:59 gravou propostas.csv.gz: 328474 linhas, 15.3 MB
+19:31:00 gravou habilitados.csv.gz: 18050 linhas, 0.1 MB
+19:31:00 gravou cnpj_ibge.csv.gz: 7756 linhas, 0.1 MB
+19:32:13 detalhes: 83941 convênios em 500 fatias, 28.6 MB
+19:32:13 {"data_carga_governo": "23/11/2026 06:35:40", "detalhes": 83941, "processado_em": "2026-11-27T19:32:13+00:00", "ano_min": 2019, "programas": 4803, "programas_abertos": 223, "propostas": 328474, "habilitados": 18050, "programas_com_lista_fechada": 40, "convenios_vivos": 61198, "falhas_download": [], "fonte": "https://api-publica.transferegov.gestao.gov.br/downloads/dadosgov/"}
