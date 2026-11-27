@@ -1,0 +1,18 @@
+{
+ "processado_em": "2026-11-24T21:07:38+00:00",
+ "ano_min": 2020,
+ "planos": 52127,
+ "sem_ibge": 0,
+ "situacoes_plano_trabalho": {
+  "CONCLUIDO_NT_TCU": 31107,
+  "Em Ajuste do Plano de Trabalho": 408,
+  "": 1208,
+  "Enviado para Análise": 848,
+  "APROVADO": 16405,
+  "Em Complementação": 1480,
+  "Concluído": 225,
+  "REPROVADO": 388,
+  "Em Elaboração": 58
+ },
+ "fonte": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/"
+}
